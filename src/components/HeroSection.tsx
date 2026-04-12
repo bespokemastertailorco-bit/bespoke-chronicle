@@ -14,7 +14,7 @@ const HeroSection = () => {
       <img
         src={heroBg}
         alt="Bespoke Master Tailor hero"
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover object-top"
       />
       <div className="absolute inset-0 bg-black/30" />
 
