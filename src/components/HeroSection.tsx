@@ -9,12 +9,12 @@ const HeroSection = () => {
   return (
     <section
       id="home"
-      className="relative w-full min-h-screen flex items-center justify-center"
+      className="relative w-full h-[80vh] md:h-screen flex items-center justify-center overflow-hidden"
     >
       <img
         src={heroBg}
         alt="Bespoke Master Tailor hero"
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover object-top"
       />
       <div className="absolute inset-0 bg-black/30" />
 
