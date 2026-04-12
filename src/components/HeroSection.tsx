@@ -9,7 +9,7 @@ const HeroSection = () => {
   return (
     <section
       id="home"
-      className="relative w-full min-h-screen flex items-center justify-center"
+      className="relative w-full h-[80vh] md:h-screen flex items-center justify-center overflow-hidden"
     >
       <img
         src={heroBg}
