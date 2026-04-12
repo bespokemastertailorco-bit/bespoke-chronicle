@@ -34,36 +34,26 @@ const Header = () => {
           {mobileOpen ? <X size={20} strokeWidth={1} /> : <Menu size={20} strokeWidth={1} />}
         </button>
 
-        {/* Desktop nav — left */}
-        <nav className="hidden md:flex items-center gap-8">
-          {navLinks.slice(0, 3).map((link) => (
-            <button
-              key={link.label}
-              onClick={() => handleNavClick(link.href)}
-              className="editorial-label hover:text-foreground transition-colors cursor-pointer"
-            >
-              {link.label}
-            </button>
-          ))}
-        </nav>
-
-        {/* Logo — center */}
+        {/* Logo + Name — left */}
         <a
           href="#home"
           onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
-          className="mx-auto md:mx-0"
+          className="flex items-center gap-3"
           aria-label="Bespoke Master — go to top"
         >
           <img
             src="/images/logo.png"
             alt="Bespoke Master Logo"
-            className="h-12 w-auto object-contain"
+            className="h-10 w-10 object-contain rounded-sm"
           />
+          <span className="text-lg font-semibold tracking-widest uppercase">
+            Bespoke Master
+          </span>
         </a>
 
-        {/* Desktop nav — right */}
+        {/* Desktop nav — center */}
         <nav className="hidden md:flex items-center gap-8">
-          {navLinks.slice(3).map((link) => (
+          {navLinks.map((link) => (
             <button
               key={link.label}
               onClick={() => handleNavClick(link.href)}
@@ -72,10 +62,12 @@ const Header = () => {
               {link.label}
             </button>
           ))}
-          <a href="tel:+911234567890" aria-label="Call Us" className="text-foreground">
-            <Phone size={18} strokeWidth={1} />
-          </a>
         </nav>
+
+        {/* Contact icon — right */}
+        <a href="tel:+911234567890" aria-label="Call Us" className="hidden md:block text-foreground">
+          <Phone size={18} strokeWidth={1} />
+        </a>
       </div>
 
       {/* Mobile menu dropdown */}
