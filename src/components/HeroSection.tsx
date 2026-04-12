@@ -5,27 +5,31 @@ const scrollTo = (id: string) => {
 
 const HeroSection = () => {
   return (
-    <section id="home" className="relative w-full h-screen">
-      <img
-        src="/images/hero-bg.jpg"
-        alt="Bespoke Master — Spring Summer Collection hero"
-        className="w-full h-full object-cover max-w-full"
-      />
-      <div className="absolute inset-0 flex flex-col items-center justify-end pb-20 md:pb-32">
-        <p className="editorial-label mb-4">Bespoke Master</p>
-        <h1 className="editorial-heading text-3xl md:text-5xl lg:text-6xl text-foreground mb-6 text-center px-4">
+    <section
+      id="home"
+      className="relative w-full min-h-screen flex items-center justify-center"
+      style={{
+        background: "linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%)",
+      }}
+    >
+      {/* Subtle overlay for future background image */}
+      <div className="absolute inset-0 bg-black/30" />
+
+      <div className="relative z-10 flex flex-col items-center justify-center text-center px-4">
+        <p className="editorial-label mb-4 text-white/70">Bespoke Master</p>
+        <h1 className="editorial-heading text-3xl md:text-5xl lg:text-6xl text-white mb-6">
           Spring Summer Collection
         </h1>
         <div className="flex flex-col sm:flex-row items-center gap-6">
           <button
             onClick={() => scrollTo("#contact")}
-            className="editorial-link"
+            className="editorial-link text-white after:bg-white"
           >
             Book a Consultation
           </button>
           <button
             onClick={() => scrollTo("#gallery")}
-            className="editorial-link"
+            className="editorial-link text-white after:bg-white"
           >
             View Our Work
           </button>
