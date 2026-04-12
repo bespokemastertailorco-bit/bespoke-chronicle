@@ -9,14 +9,21 @@ const HeroSection = () => {
   return (
     <section
       id="home"
-      className="relative w-full h-[80vh] md:h-screen flex items-center justify-center overflow-hidden"
+      className="relative w-full min-h-screen flex items-center justify-center"
+      style={{
+        backgroundImage: `url(${heroBg})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center center",
+        backgroundRepeat: "no-repeat",
+      }}
     >
-      <img
-        src={heroBg}
-        alt="Bespoke Master Tailor hero"
-        className="absolute inset-0 w-full h-full object-cover object-top"
+      {/* Dark overlay for text readability */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: "linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.3) 100%)",
+        }}
       />
-      <div className="absolute inset-0 bg-black/30" />
 
       <div className="relative z-10 flex flex-col items-center justify-center text-center px-4">
         <p className="editorial-label mb-4 text-white/70">Bespoke Master</p>
