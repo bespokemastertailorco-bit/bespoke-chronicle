@@ -1,3 +1,5 @@
+import heroBg from "@/assets/hero-bg.png";
+
 const scrollTo = (id: string) => {
   const el = document.querySelector(id);
   if (el) el.scrollIntoView({ behavior: "smooth" });
@@ -8,11 +10,12 @@ const HeroSection = () => {
     <section
       id="home"
       className="relative w-full min-h-screen flex items-center justify-center"
-      style={{
-        background: "linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%)",
-      }}
     >
-      {/* Subtle overlay for future background image */}
+      <img
+        src={heroBg}
+        alt="Bespoke Master Tailor hero"
+        className="absolute inset-0 w-full h-full object-cover"
+      />
       <div className="absolute inset-0 bg-black/30" />
 
       <div className="relative z-10 flex flex-col items-center justify-center text-center px-4">
