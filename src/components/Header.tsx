@@ -44,7 +44,7 @@ const Header = () => {
           <img
             src="/images/logo.png"
             alt="Bespoke Master Tailor Logo"
-            className="h-[84px] w-[84px] object-contain"
+            className="h-[100px] w-[100px] object-contain"
           />
           <span className="text-lg font-semibold tracking-widest uppercase">
             Bespoke Master
