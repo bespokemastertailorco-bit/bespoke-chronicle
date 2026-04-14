@@ -42,8 +42,8 @@ const Header = () => {
           aria-label="Bespoke Master — go to top"
         >
           <img
-            src="/images/logo.jpg"
-            alt="Bespoke Master Logo"
+            src="/images/logo.png"
+            alt="Bespoke Master Tailor Logo"
             className="h-10 w-10 object-contain rounded-sm"
           />
           <span className="text-lg font-semibold tracking-widest uppercase">
