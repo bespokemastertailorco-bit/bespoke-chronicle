@@ -83,13 +83,10 @@ const Header = () => {
             aria-label="Bespoke Master — go to top"
           >
             <img
-              src="/images/logo.jpg"
-              alt="Bespoke Master Logo"
-              className="h-10 w-10 object-contain rounded-sm"
+              src="/logo.png"
+              alt="Bespoke Master"
+              className="h-10 w-auto object-contain"
             />
-            <span className={`text-lg font-semibold tracking-widest uppercase transition-colors ${scrolled ? "text-foreground" : "text-white"}`}>
-              Bespoke Master
-            </span>
           </a>
 
           {/* Desktop nav — center */}
