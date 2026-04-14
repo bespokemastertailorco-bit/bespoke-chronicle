@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Instagram, Facebook, Linkedin, ArrowUp } from "lucide-react";
+import { Instagram, Facebook, Linkedin, ArrowUp, MessageCircle } from "lucide-react";
 
 const navScroll = (href: string) => {
   if (href === "#home") {
@@ -13,9 +13,12 @@ const navScroll = (href: string) => {
 const Footer = () => {
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
+  const currentYear = new Date().getFullYear();
 
   const handleSubscribe = () => {
-    if (email.trim()) setSubscribed(true);
+    if (email.trim() && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setSubscribed(true);
+    }
   };
 
   return (
@@ -107,7 +110,7 @@ const Footer = () => {
           {/* Social icons */}
           <div className="flex items-center gap-5">
             <a
-              href="http://instagram.com/bespokemasterglobal/"
+              href="https://instagram.com/bespokemasterglobal/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
@@ -133,13 +136,22 @@ const Footer = () => {
             >
               <Linkedin size={18} strokeWidth={1} />
             </a>
+            <a
+              href="https://wa.me/917310000000"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="WhatsApp"
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <MessageCircle size={18} strokeWidth={1} />
+            </a>
           </div>
         </div>
       </div>
 
       <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
         <p className="font-body text-xs font-light text-muted-foreground text-center">
-          © 2026 Bespoke Master. All rights reserved.
+          © {currentYear} Bespoke Master. All rights reserved.
         </p>
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}

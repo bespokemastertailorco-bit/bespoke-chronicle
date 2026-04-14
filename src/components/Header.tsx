@@ -1,13 +1,13 @@
 import { useState, useRef, useEffect } from "react";
-import { Menu, X, User, ChevronDown } from "lucide-react";
+import { Menu, X, User, ChevronDown, Calendar } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 import AuthModal from "@/components/AuthModal";
 
 const navLinks = [
   { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
   { label: "Collection", href: "#collection" },
+  { label: "About", href: "#about" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -16,14 +16,33 @@ const Header = () => {
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("#home");
   const dropdownRef = useRef<HTMLDivElement>(null);
   const { user, signOut } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
+
+      // Determine active section based on scroll position
+      const sections = navLinks.map(link => link.href);
+      const scrollPosition = window.scrollY + window.innerHeight / 3;
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i];
+        const element = document.querySelector(section);
+        if (element) {
+          const offsetTop = element.getBoundingClientRect().top + window.scrollY;
+          if (scrollPosition >= offsetTop) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
     };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll(); // Initial check
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -39,6 +58,7 @@ const Header = () => {
 
   const handleNavClick = (href: string) => {
     setMobileOpen(false);
+    setActiveSection(href);
     if (href === "#home") {
       window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
@@ -91,19 +111,43 @@ const Header = () => {
 
           {/* Desktop nav — center */}
           <nav className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <button
-                key={link.label}
-                onClick={() => handleNavClick(link.href)}
-                className={`editorial-label hover:opacity-70 transition-all cursor-pointer ${scrolled ? "" : "text-white/80 hover:text-white"}`}
-              >
-                {link.label}
-              </button>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.href;
+              return (
+                <button
+                  key={link.label}
+                  onClick={() => handleNavClick(link.href)}
+                  className={`editorial-label hover:opacity-70 transition-all cursor-pointer relative ${
+                    scrolled 
+                      ? isActive ? "text-foreground" : "text-muted-foreground" 
+                      : isActive ? "text-white" : "text-white/80 hover:text-white"
+                  }`}
+                >
+                  {link.label}
+                  {isActive && (
+                    <span className={`absolute -bottom-1 left-0 w-full h-px ${scrolled ? "bg-foreground" : "bg-white"}`} />
+                  )}
+                </button>
+              );
+            })}
           </nav>
 
-          {/* Right side: Account */}
-          <div className="hidden md:flex items-center gap-6">
+          {/* Right side: Book Appointment + Account */}
+          <div className="hidden md:flex items-center gap-4">
+            {/* Book Appointment Button */}
+            <button
+              onClick={() => handleNavClick("#contact")}
+              className={`flex items-center gap-2 px-4 py-2 text-xs tracking-widest uppercase font-light border transition-all duration-300 cursor-pointer hover:opacity-80 ${
+                scrolled 
+                  ? "border-foreground text-foreground hover:bg-foreground hover:text-background" 
+                  : "border-white/60 text-white/90 hover:bg-white hover:text-background"
+              }`}
+            >
+              <Calendar size={14} strokeWidth={1} />
+              <span>Book Now</span>
+            </button>
+
+            {/* Account */}
             {user ? (
               <div className="relative" ref={dropdownRef}>
                 <button
@@ -147,20 +191,38 @@ const Header = () => {
         {/* Mobile menu dropdown */}
         {mobileOpen && (
           <nav className="md:hidden border-t border-border bg-background px-6 py-6 flex flex-col gap-5">
-            {navLinks.map((link) => (
-              <button
-                key={link.label}
-                onClick={() => handleNavClick(link.href)}
-                className="editorial-label text-left hover:text-foreground transition-colors cursor-pointer"
-              >
-                {link.label}
-              </button>
-            ))}
+            {/* Book Now button in mobile menu */}
+            <button
+              onClick={() => handleNavClick("#contact")}
+              className="flex items-center justify-center gap-2 px-4 py-3 text-xs tracking-widest uppercase font-light border border-foreground text-foreground transition-all duration-300 cursor-pointer hover:bg-foreground hover:text-background"
+            >
+              <Calendar size={14} strokeWidth={1} />
+              <span>Book Appointment</span>
+            </button>
+
+            <div className="border-t border-border my-2" />
+
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.href;
+              return (
+                <button
+                  key={link.label}
+                  onClick={() => handleNavClick(link.href)}
+                  className={`editorial-label text-left transition-colors cursor-pointer ${
+                    isActive ? "text-foreground font-medium" : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  {link.label}
+                  {isActive && <span className="ml-2 text-foreground">—</span>}
+                </button>
+              );
+            })}
             {user ? (
               <>
+                <div className="border-t border-border my-2" />
                 <button
                   onClick={() => { setMobileOpen(false); handleNavClick("#about"); }}
-                  className="editorial-label text-left hover:text-foreground transition-colors cursor-pointer"
+                  className="editorial-label text-left text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
                 >
                   My Account
                 </button>
@@ -172,12 +234,15 @@ const Header = () => {
                 </button>
               </>
             ) : (
-              <button
-                onClick={() => { setMobileOpen(false); setAuthModalOpen(true); }}
-                className="editorial-label text-left hover:text-foreground transition-colors cursor-pointer"
-              >
-                Account
-              </button>
+              <>
+                <div className="border-t border-border my-2" />
+                <button
+                  onClick={() => { setMobileOpen(false); setAuthModalOpen(true); }}
+                  className="editorial-label text-left text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+                >
+                  Account
+                </button>
+              </>
             )}
           </nav>
         )}

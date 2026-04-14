@@ -48,13 +48,35 @@
     --font-heading: 'Playfair Display', serif;
     --font-body: 'Inter', sans-serif;
   }
+
+  /* Responsive base styles */
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Mobile-first responsive adjustments */
+  @media (max-width: 375px) {
+    html {
+      font-size: 14px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    html {
+      font-size: 16px;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    html {
+      font-size: 16px;
+    }
+  }
 }
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
-  }
-
   * {
     @apply border-border;
   }

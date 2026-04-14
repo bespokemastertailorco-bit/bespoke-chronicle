@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import heroBg from "@/assets/hero-bg.png";
+
+const HERO_IMAGE = "https://images.unsplash.com/photo-1594938298603-c8148c4b4de1?w=1600";
 
 const scrollTo = (id: string) => {
   const el = document.querySelector(id);
@@ -31,11 +32,11 @@ const HeroSection = () => {
       id="home"
       className="relative w-full h-screen flex items-center overflow-hidden"
     >
-      {/* Parallax Background */}
+      {/* Parallax Background with Unsplash image */}
       <div
         className="absolute inset-0 w-full h-[120%] -top-[10%] parallax-bg"
         style={{
-          backgroundImage: `url(${heroBg})`,
+          backgroundImage: `url(${HERO_IMAGE})`,
           backgroundSize: "cover",
           backgroundPosition: "center center",
           backgroundRepeat: "no-repeat",
@@ -43,10 +44,10 @@ const HeroSection = () => {
         }}
       />
 
-      {/* Soft dark overlay */}
+      {/* Dark overlay for text readability */}
       <div
         className="absolute inset-0"
-        style={{ background: "rgba(0,0,0,0.35)" }}
+        style={{ background: "rgba(0,0,0,0.45)" }}
       />
 
       <div className="relative z-10 flex flex-col items-start justify-center px-8 md:px-20 lg:px-32 max-w-4xl hero-fade-in">
@@ -58,16 +59,31 @@ const HeroSection = () => {
         </h1>
         <p
           className="font-body text-sm md:text-base lg:text-lg font-light mb-12 leading-relaxed max-w-xl tracking-wide"
-          style={{ color: "rgba(245,245,245,0.85)" }}
+          style={{ color: "rgba(245,245,245,0.9)" }}
         >
-          Curated ready-to-wear &amp; hand-crafted bespoke — for those who set the standard, not follow it.
+          For over 35 years, Bespoke Master has crafted garments that define excellence. 
+          Experience the luxury of perfectly tailored clothing, made exclusively for you.
         </p>
-        <button
-          onClick={() => scrollTo("#split")}
-          className="hero-cta-btn"
-        >
-          Explore Collection
-        </button>
+        <div className="flex flex-col sm:flex-row gap-4">
+          <button
+            onClick={() => scrollTo("#contact")}
+            className="hero-cta-btn"
+          >
+            Book Consultation
+          </button>
+          <button
+            onClick={() => scrollTo("#collection")}
+            className="px-8 py-3 text-xs tracking-widest uppercase font-light border transition-all duration-300 cursor-pointer hover:bg-white/10"
+            style={{
+              fontFamily: "var(--font-body)",
+              color: "#f5f5f5",
+              borderColor: "rgba(245,245,245,0.5)",
+              background: "transparent",
+            }}
+          >
+            View Collection
+          </button>
+        </div>
       </div>
 
       {/* Scroll indicator */}
