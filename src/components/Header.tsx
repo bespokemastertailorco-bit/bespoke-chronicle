@@ -1,5 +1,7 @@
-import { useState } from "react";
-import { Menu, X, Phone } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import { Menu, X, Phone, User, ChevronDown } from "lucide-react";
+import { useAuth } from "@/context/AuthContext";
+import AuthModal from "@/components/AuthModal";
 
 const navLinks = [
   { label: "Home", href: "#home" },
@@ -11,6 +13,20 @@ const navLinks = [
 
 const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [authModalOpen, setAuthModalOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const { user, signOut } = useAuth();
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const handleNavClick = (href: string) => {
     setMobileOpen(false);
@@ -22,72 +38,135 @@ const Header = () => {
     }
   };
 
+  const handleSignOut = async () => {
+    setDropdownOpen(false);
+    await signOut();
+  };
+
+  const displayEmail = user?.email
+    ? user.email.length > 20
+      ? user.email.slice(0, 18) + "…"
+      : user.email
+    : null;
+
   return (
-    <header className="sticky top-0 z-50 bg-background border-b border-border">
-      <div className="flex items-center justify-between px-6 md:px-12 py-4">
-        {/* Hamburger (mobile) */}
-        <button
-          aria-label={mobileOpen ? "Close menu" : "Open menu"}
-          className="text-foreground md:hidden"
-          onClick={() => setMobileOpen((v) => !v)}
-        >
-          {mobileOpen ? <X size={20} strokeWidth={1} /> : <Menu size={20} strokeWidth={1} />}
-        </button>
+    <>
+      <header className="sticky top-0 z-50 bg-background border-b border-border">
+        <div className="flex items-center justify-between px-6 md:px-12 py-4">
+          {/* Hamburger (mobile) */}
+          <button
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            className="text-foreground md:hidden"
+            onClick={() => setMobileOpen((v) => !v)}
+          >
+            {mobileOpen ? <X size={20} strokeWidth={1} /> : <Menu size={20} strokeWidth={1} />}
+          </button>
 
-        {/* Logo + Name — left */}
-        <a
-          href="#home"
-          onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
-          className="flex items-center gap-3"
-          aria-label="Bespoke Master — go to top"
-        >
-          <img
-            src="/images/logo.png"
-            alt="Bespoke Master Tailor Logo"
-            className="h-[74px] w-[74px] object-contain"
-          />
-          <span className="text-lg font-semibold tracking-widest uppercase">
-            Bespoke Master
-          </span>
-        </a>
-
-        {/* Desktop nav — center */}
-        <nav className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <button
-              key={link.label}
-              onClick={() => handleNavClick(link.href)}
-              className="editorial-label hover:text-foreground transition-colors cursor-pointer"
-            >
-              {link.label}
-            </button>
-          ))}
-        </nav>
-
-        {/* Contact icon — right */}
-        <a href="tel:+911234567890" aria-label="Call Us" className="hidden md:block text-foreground">
-          <Phone size={18} strokeWidth={1} />
-        </a>
-      </div>
-
-      {/* Mobile menu dropdown */}
-      {mobileOpen && (
-        <nav className="md:hidden border-t border-border bg-background px-6 py-6 flex flex-col gap-5">
-          {navLinks.map((link) => (
-            <button
-              key={link.label}
-              onClick={() => handleNavClick(link.href)}
-              className="editorial-label text-left hover:text-foreground transition-colors cursor-pointer"
-            >
-              {link.label}
-            </button>
-          ))}
-          <a href="tel:+911234567890" className="editorial-label hover:text-foreground transition-colors">
-            Call Us
+          {/* Logo + Name — left */}
+          <a
+            href="#home"
+            onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+            className="flex items-center gap-3"
+            aria-label="Bespoke Master — go to top"
+          >
+            <img
+              src="/images/logo.jpg"
+              alt="Bespoke Master Logo"
+              className="h-10 w-10 object-contain rounded-sm"
+            />
+            <span className="text-lg font-semibold tracking-widest uppercase">
+              Bespoke Master
+            </span>
           </a>
-        </nav>
-      )}
-    </header>
+
+          {/* Desktop nav — center */}
+          <nav className="hidden md:flex items-center gap-8">
+            {navLinks.map((link) => (
+              <button
+                key={link.label}
+                onClick={() => handleNavClick(link.href)}
+                className="editorial-label hover:text-foreground transition-colors cursor-pointer"
+              >
+                {link.label}
+              </button>
+            ))}
+          </nav>
+
+          {/* Right side: Phone + Account */}
+          <div className="hidden md:flex items-center gap-6">
+            <a href="tel:+911234567890" aria-label="Call Us" className="text-foreground">
+              <Phone size={18} strokeWidth={1} />
+            </a>
+
+            {user ? (
+              <div className="relative" ref={dropdownRef}>
+                <button
+                  onClick={() => setDropdownOpen((v) => !v)}
+                  className="flex items-center gap-1.5 editorial-label hover:text-foreground transition-colors cursor-pointer"
+                >
+                  <User size={14} strokeWidth={1} />
+                  <span>{displayEmail}</span>
+                  <ChevronDown size={12} strokeWidth={1} className={`transition-transform duration-200 ${dropdownOpen ? "rotate-180" : ""}`} />
+                </button>
+                {dropdownOpen && (
+                  <div className="absolute right-0 top-full mt-3 w-44 bg-background border border-border shadow-sm">
+                    <button
+                      onClick={handleSignOut}
+                      className="w-full text-left px-4 py-3 editorial-label hover:bg-muted transition-colors cursor-pointer"
+                    >
+                      Sign Out
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <button
+                onClick={() => setAuthModalOpen(true)}
+                className="flex items-center gap-1.5 editorial-label hover:text-foreground transition-colors cursor-pointer"
+              >
+                <User size={14} strokeWidth={1} />
+                <span>Account</span>
+              </button>
+            )}
+          </div>
+        </div>
+
+        {/* Mobile menu dropdown */}
+        {mobileOpen && (
+          <nav className="md:hidden border-t border-border bg-background px-6 py-6 flex flex-col gap-5">
+            {navLinks.map((link) => (
+              <button
+                key={link.label}
+                onClick={() => handleNavClick(link.href)}
+                className="editorial-label text-left hover:text-foreground transition-colors cursor-pointer"
+              >
+                {link.label}
+              </button>
+            ))}
+            <a href="tel:+911234567890" className="editorial-label hover:text-foreground transition-colors">
+              Call Us
+            </a>
+            {user ? (
+              <button
+                onClick={handleSignOut}
+                className="editorial-label text-left hover:text-foreground transition-colors cursor-pointer"
+              >
+                Sign Out
+              </button>
+            ) : (
+              <button
+                onClick={() => { setMobileOpen(false); setAuthModalOpen(true); }}
+                className="editorial-label text-left hover:text-foreground transition-colors cursor-pointer"
+              >
+                Account
+              </button>
+            )}
+          </nav>
+        )}
+      </header>
+
+      {authModalOpen && <AuthModal onClose={() => setAuthModalOpen(false)} />}
+    </>
   );
 };
 

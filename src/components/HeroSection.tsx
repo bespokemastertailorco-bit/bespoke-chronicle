@@ -9,7 +9,7 @@ const HeroSection = () => {
   return (
     <section
       id="home"
-      className="relative w-full min-h-screen flex items-center justify-center"
+      className="relative w-full min-h-screen flex items-center"
       style={{
         backgroundImage: `url(${heroBg})`,
         backgroundSize: "cover",
@@ -17,33 +17,31 @@ const HeroSection = () => {
         backgroundRepeat: "no-repeat",
       }}
     >
-      {/* Dark overlay for text readability */}
+      {/* Dark overlay */}
       <div
         className="absolute inset-0"
-        style={{
-          background: "linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.3) 100%)",
-        }}
+        style={{ background: "rgba(0,0,0,0.4)" }}
       />
 
-      <div className="relative z-10 flex flex-col items-center justify-center text-center px-4">
-        <p className="editorial-label mb-4 text-white/70">Bespoke Master</p>
-        <h1 className="editorial-heading text-3xl md:text-5xl lg:text-6xl text-white mb-6">
-          Spring Summer Collection
+      <div className="relative z-10 flex flex-col items-start justify-center px-8 md:px-20 lg:px-32 max-w-3xl hero-fade-in">
+        <h1
+          className="editorial-heading text-4xl md:text-6xl lg:text-7xl mb-6 leading-tight"
+          style={{ color: "#f5f5f5", letterSpacing: "0.04em" }}
+        >
+          The Art of Being Exceptional
         </h1>
-        <div className="flex flex-col sm:flex-row items-center gap-6">
-          <button
-            onClick={() => scrollTo("#contact")}
-            className="editorial-link text-white after:bg-white"
-          >
-            Book a Consultation
-          </button>
-          <button
-            onClick={() => scrollTo("#gallery")}
-            className="editorial-link text-white after:bg-white"
-          >
-            View Our Work
-          </button>
-        </div>
+        <p
+          className="font-body text-sm md:text-base font-light mb-10 leading-relaxed max-w-lg"
+          style={{ color: "#f5f5f5cc" }}
+        >
+          Curated ready-to-wear &amp; hand-crafted bespoke — for those who set the standard, not follow it.
+        </p>
+        <button
+          onClick={() => scrollTo("#services")}
+          className="hero-cta-btn"
+        >
+          Explore Collection
+        </button>
       </div>
     </section>
   );
