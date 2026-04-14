@@ -1,10 +1,6 @@
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import SplitSection from "@/components/SplitSection";
-import SpringSummerSection from "@/components/SpringSummerSection";
-import CategoryStrip from "@/components/CategoryStrip";
-import MainSplit from "@/components/MainSplit";
-import EditorialBlock from "@/components/EditorialBlock";
 import FeaturedProducts from "@/components/FeaturedProducts";
 import AboutSection from "@/components/AboutSection";
 import ContactSection from "@/components/ContactSection";
@@ -17,10 +13,6 @@ const Index = () => {
       <main>
         <HeroSection />
         <SplitSection />
-        <SpringSummerSection />
-        <CategoryStrip />
-        <MainSplit />
-        <EditorialBlock />
         <FeaturedProducts />
         <AboutSection />
         <ContactSection />

@@ -17,7 +17,7 @@ const AboutSection = () => {
   const ref = useFadeIn();
 
   return (
-    <section id="about" ref={ref} className="fade-in-section py-20 md:py-32 px-6 md:px-12">
+    <section id="about" ref={ref} className="fade-in-section py-24 md:py-40 px-6 md:px-12 lg:px-20">
       {/* Brand story */}
       <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center mb-20 md:mb-32">
         <div>

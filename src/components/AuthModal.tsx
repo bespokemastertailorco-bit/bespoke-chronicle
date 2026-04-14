@@ -45,11 +45,11 @@ const AuthModal = ({ onClose }: AuthModalProps) => {
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm px-4"
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-md px-4"
       onClick={onClose}
     >
       <div
-        className="relative bg-background border border-border w-full max-w-sm p-10"
+        className="relative bg-background w-full max-w-md p-12 shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close */}

@@ -30,33 +30,29 @@ const SplitSection = () => {
   const ref = useFadeIn();
 
   return (
-    <section ref={ref} className="fade-in-section grid grid-cols-1 md:grid-cols-2">
+    <section id="split" ref={ref} className="fade-in-section grid grid-cols-1 md:grid-cols-2 min-h-screen">
       {panels.map((panel) => (
         <button
           key={panel.title}
           onClick={() => scrollToContactWithSubject(panel.subject)}
-          className="group relative overflow-hidden aspect-[4/5] md:aspect-auto md:min-h-[70vh] w-full text-left cursor-pointer"
+          className="split-panel group relative overflow-hidden h-[50vh] md:h-screen w-full text-left cursor-pointer"
           aria-label={panel.title}
         >
           <img
             src={panel.image}
             alt={panel.alt}
             loading="lazy"
-            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+            className="absolute inset-0 w-full h-full object-cover"
           />
-          {/* Dark overlay */}
+          {/* Overlay - smooth darkening on hover */}
           <div
-            className="absolute inset-0 transition-all duration-500"
-            style={{ background: "rgba(0,0,0,0.35)" }}
+            className="split-overlay absolute inset-0"
+            style={{ background: "rgba(0,0,0,0.25)" }}
           />
-          <div
-            className="absolute inset-0 transition-all duration-500 opacity-0 group-hover:opacity-100"
-            style={{ background: "rgba(0,0,0,0.55)" }}
-          />
-          {/* Label bottom-left */}
-          <div className="absolute bottom-10 left-8 md:left-12">
+          {/* Label bottom-left with subtle animation */}
+          <div className="absolute bottom-12 left-8 md:left-16 z-10 transition-transform duration-500 group-hover:translate-y-[-4px]">
             <h2
-              className="editorial-heading text-2xl md:text-3xl"
+              className="editorial-heading text-2xl md:text-4xl tracking-wide"
               style={{ color: "#f5f5f5" }}
             >
               {panel.title}

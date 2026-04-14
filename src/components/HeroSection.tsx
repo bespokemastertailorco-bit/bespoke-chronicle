@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import heroBg from "@/assets/hero-bg.png";
 
 const scrollTo = (id: string) => {
@@ -6,42 +7,72 @@ const scrollTo = (id: string) => {
 };
 
 const HeroSection = () => {
+  const [offsetY, setOffsetY] = useState(0);
+  const heroRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (heroRef.current) {
+        const scrollY = window.scrollY;
+        const heroHeight = heroRef.current.offsetHeight;
+        if (scrollY < heroHeight) {
+          setOffsetY(scrollY * 0.3);
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <section
+      ref={heroRef}
       id="home"
-      className="relative w-full min-h-screen flex items-center"
-      style={{
-        backgroundImage: `url(${heroBg})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center center",
-        backgroundRepeat: "no-repeat",
-      }}
+      className="relative w-full h-screen flex items-center overflow-hidden"
     >
-      {/* Dark overlay */}
+      {/* Parallax Background */}
       <div
-        className="absolute inset-0"
-        style={{ background: "rgba(0,0,0,0.4)" }}
+        className="absolute inset-0 w-full h-[120%] -top-[10%] parallax-bg"
+        style={{
+          backgroundImage: `url(${heroBg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center center",
+          backgroundRepeat: "no-repeat",
+          transform: `translateY(${offsetY}px)`,
+        }}
       />
 
-      <div className="relative z-10 flex flex-col items-start justify-center px-8 md:px-20 lg:px-32 max-w-3xl hero-fade-in">
+      {/* Soft dark overlay */}
+      <div
+        className="absolute inset-0"
+        style={{ background: "rgba(0,0,0,0.35)" }}
+      />
+
+      <div className="relative z-10 flex flex-col items-start justify-center px-8 md:px-20 lg:px-32 max-w-4xl hero-fade-in">
         <h1
-          className="editorial-heading text-4xl md:text-6xl lg:text-7xl mb-6 leading-tight"
-          style={{ color: "#f5f5f5", letterSpacing: "0.04em" }}
+          className="editorial-heading text-4xl md:text-6xl lg:text-7xl xl:text-8xl mb-8 leading-tight"
+          style={{ color: "#f5f5f5", letterSpacing: "0.06em" }}
         >
           The Art of Being Exceptional
         </h1>
         <p
-          className="font-body text-sm md:text-base font-light mb-10 leading-relaxed max-w-lg"
-          style={{ color: "#f5f5f5cc" }}
+          className="font-body text-sm md:text-base lg:text-lg font-light mb-12 leading-relaxed max-w-xl tracking-wide"
+          style={{ color: "rgba(245,245,245,0.85)" }}
         >
           Curated ready-to-wear &amp; hand-crafted bespoke — for those who set the standard, not follow it.
         </p>
         <button
-          onClick={() => scrollTo("#services")}
+          onClick={() => scrollTo("#split")}
           className="hero-cta-btn"
         >
           Explore Collection
         </button>
+      </div>
+
+      {/* Scroll indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 opacity-60">
+        <div className="w-px h-12 bg-white/40 mx-auto animate-pulse" />
       </div>
     </section>
   );

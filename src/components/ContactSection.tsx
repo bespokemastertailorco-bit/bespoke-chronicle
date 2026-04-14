@@ -58,7 +58,7 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" ref={ref} className="fade-in-section py-20 md:py-32 px-6 md:px-12 border-t border-border">
+    <section id="contact" ref={ref} className="fade-in-section py-24 md:py-40 px-6 md:px-12 lg:px-20">
       <div className="max-w-xl mx-auto">
         <p className="editorial-label text-center mb-8">Get in Touch</p>
         <h2 className="editorial-heading text-2xl md:text-3xl text-foreground text-center mb-12">

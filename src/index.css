@@ -117,13 +117,60 @@
 
   .fade-in-section {
     opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    transform: translateY(24px);
+    transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
   .fade-in-section.visible {
     opacity: 1;
     transform: translateY(0);
+  }
+
+  .reveal-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.9s ease-out, transform 0.9s ease-out;
+  }
+
+  .reveal-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .header-transparent {
+    background: transparent;
+    border-color: transparent;
+  }
+
+  .header-solid {
+    background: hsl(var(--background));
+    border-color: hsl(var(--border));
+  }
+
+  .split-panel {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .split-panel img {
+    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .split-panel:hover img {
+    transform: scale(1.03);
+  }
+
+  .split-overlay {
+    transition: background 0.5s ease;
+  }
+
+  .split-panel:hover .split-overlay {
+    background: rgba(0,0,0,0.5) !important;
+  }
+
+  .parallax-bg {
+    will-change: transform;
+    transition: transform 0.1s linear;
   }
 
   .hero-cta-btn {
