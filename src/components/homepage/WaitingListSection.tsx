@@ -5,28 +5,27 @@ const WaitingListSection = () => {
 
   return (
     <section
-      className="relative w-full min-h-[400px] md:min-h-[500px] flex items-center justify-center cursor-pointer group"
+      id="contact"
+      className="relative w-full min-h-[450px] md:min-h-[550px] flex items-center justify-center cursor-pointer group"
       data-photo="replaceable"
       style={{
-        backgroundImage: `url(https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=1600)`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
+        background: "#1a1a1a",
       }}
       onClick={openModal}
     >
-      {/* REPLACE IMAGE: Consultation Section Background */}
-      {/* Dark Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/30 group-hover:from-black/85 transition-all duration-500" />
+      {/* REPLACE IMAGE: CTA Section Background */}
+      {/* Dark overlay for text readability */}
+      <div className="absolute inset-0 bg-black/40" />
 
       {/* Content */}
-      <div className="relative z-10 text-center px-6">
-        <p className="text-white/70 text-[11px] uppercase tracking-[0.3em] font-light mb-4">
-          We craft exclusively for those who appreciate the art of handmade clothing.
-        </p>
-        <h2 className="font-heading text-3xl md:text-5xl lg:text-6xl text-white hover:underline underline-offset-8 transition-all">
-          BEGIN YOUR BESPOKE JOURNEY
+      <div className="relative z-10 text-center px-6 max-w-3xl mx-auto">
+        <h2 className="font-heading text-white text-3xl md:text-4xl lg:text-5xl mb-6">
+          Begin Your Bespoke Journey
         </h2>
-        <button className="mt-8 px-10 py-4 bg-white text-black text-[11px] uppercase tracking-[0.25em] font-light hover:bg-neutral-100 transition-colors">
+        <p className="text-white/70 text-sm md:text-base font-light leading-relaxed mb-10 max-w-2xl mx-auto">
+          We craft for those who appreciate the art of handmade clothing. Reach out to start a private conversation with our master tailor — in Indore or anywhere in the world.
+        </p>
+        <button className="btn-outline-white">
           Request a Consultation
         </button>
       </div>

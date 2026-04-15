@@ -5,11 +5,7 @@ import HeroSection from "@/components/HeroSection";
 import PrivateTailoringSection from "@/components/homepage/PrivateTailoringSection";
 import CategoryGrid from "@/components/homepage/CategoryGrid";
 import TailoringProcess from "@/components/homepage/TailoringProcess";
-import AtelierSection from "@/components/homepage/AtelierSection";
-import WorldwideBespokeSection from "@/components/homepage/LocationEventsSection";
-import EditorialVideoPair from "@/components/homepage/EditorialVideoPair";
-import BespokeEditorialSection from "@/components/homepage/BlackLabelSection";
-import TrustBadges from "@/components/homepage/TrustBadges";
+import EditorialSection from "@/components/homepage/EditorialSection";
 import WaitingListSection from "@/components/homepage/WaitingListSection";
 import Footer from "@/components/Footer";
 import CartPanel from "@/components/CartPanel";
@@ -23,17 +19,14 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-white">
       <AnnouncementBar />
+      <div className="h-10" /> {/* Spacer for announcement bar */}
       <Navbar />
-      <main>
+      <main className="pt-16">
         <HeroSection />
         <PrivateTailoringSection />
         <CategoryGrid />
         <TailoringProcess />
-        <AtelierSection />
-        <WorldwideBespokeSection />
-        <EditorialVideoPair />
-        <BespokeEditorialSection />
-        <TrustBadges />
+        <EditorialSection />
         <WaitingListSection />
       </main>
       <Footer />

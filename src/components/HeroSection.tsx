@@ -1,6 +1,4 @@
-import { useEffect, useRef, useState } from "react";
-
-const HERO_IMAGE = "https://images.unsplash.com/photo-1594938298603-c8148c4b4de1?w=1600";
+import { Link } from "react-router-dom";
 
 const scrollTo = (id: string) => {
   const el = document.querySelector(id);
@@ -8,60 +6,31 @@ const scrollTo = (id: string) => {
 };
 
 const HeroSection = () => {
-  const [offsetY, setOffsetY] = useState(0);
-  const heroRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (heroRef.current) {
-        const scrollY = window.scrollY;
-        const heroHeight = heroRef.current.offsetHeight;
-        if (scrollY < heroHeight) {
-          setOffsetY(scrollY * 0.3);
-        }
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
     <section
-      ref={heroRef}
       id="home"
       className="relative w-full h-screen flex items-center overflow-hidden"
     >
-      {/* REPLACE IMAGE: Hero Background */}
-      {/* Parallax Background with Unsplash image */}
+      {/* REPLACE IMAGE: Hero Background — add your photo here */}
       <div
-        className="absolute inset-0 w-full h-[120%] -top-[10%] parallax-bg"
+        className="absolute inset-0 w-full h-full"
         data-photo="replaceable"
         style={{
-          backgroundImage: `url(${HERO_IMAGE})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center center",
-          backgroundRepeat: "no-repeat",
-          transform: `translateY(${offsetY}px)`,
+          background: "#1a1a1a",
         }}
       />
 
-      {/* Dark overlay for text readability */}
-      <div
-        className="absolute inset-0"
-        style={{ background: "rgba(0,0,0,0.45)" }}
-      />
-
-      <div className="relative z-10 flex flex-col items-start justify-center px-8 md:px-20 lg:px-32 max-w-4xl hero-fade-in">
+      {/* Content */}
+      <div className="relative z-10 flex flex-col items-start justify-center px-8 md:px-20 lg:px-32 max-w-[600px] h-full hero-fade-in">
         <h1
-          className="editorial-heading text-4xl md:text-6xl lg:text-7xl xl:text-8xl mb-8 leading-tight"
-          style={{ color: "#f5f5f5", letterSpacing: "0.06em" }}
+          className="font-heading text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-8 leading-tight text-white"
+          style={{ letterSpacing: "0.02em" }}
         >
           The Art of Being Exceptional
         </h1>
         <p
-          className="font-body text-sm md:text-base lg:text-lg font-light mb-12 leading-relaxed max-w-xl tracking-wide"
-          style={{ color: "rgba(245,245,245,0.9)" }}
+          className="font-body text-sm md:text-base font-light mb-12 leading-relaxed max-w-xl text-white/80"
+          style={{ letterSpacing: "0.02em" }}
         >
           For over 35 years, Bespoke Master has crafted garments that define excellence. 
           Experience the luxury of perfectly tailored clothing, made exclusively for you.
@@ -69,22 +38,16 @@ const HeroSection = () => {
         <div className="flex flex-col sm:flex-row gap-4">
           <button
             onClick={() => scrollTo("#contact")}
-            className="hero-cta-btn"
+            className="btn-outline-white"
           >
             Book Consultation
           </button>
-          <button
-            onClick={() => scrollTo("#collection")}
-            className="px-8 py-3 text-xs tracking-widest uppercase font-light border transition-all duration-300 cursor-pointer hover:bg-white/10"
-            style={{
-              fontFamily: "var(--font-body)",
-              color: "#f5f5f5",
-              borderColor: "rgba(245,245,245,0.5)",
-              background: "transparent",
-            }}
+          <Link
+            to="/collections"
+            className="btn-outline-white"
           >
             View Collection
-          </button>
+          </Link>
         </div>
       </div>
 

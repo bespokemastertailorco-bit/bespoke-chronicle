@@ -1,13 +1,8 @@
-import { Link } from "react-router-dom";
-
 const AnnouncementBar = () => {
   return (
-    <Link
-      to="/book-appointment"
-      className="block w-full bg-black text-white text-center py-2.5 px-4 text-[12px] uppercase tracking-[0.15em] font-light sticky top-0 z-[60] hover:bg-neutral-900 transition-colors"
-    >
-      WORLDWIDE BESPOKE SERVICE — WE COME TO YOU. BOOK A PRIVATE CONSULTATION
-    </Link>
+    <div className="w-full bg-[#1a1a1a] text-white text-center h-10 flex items-center justify-center px-4 text-[11px] uppercase tracking-[0.15em] font-normal sticky top-0 z-[60]">
+      HANDCRAFTED IN INDIA — AVAILABLE WORLDWIDE
+    </div>
   );
 };
 
