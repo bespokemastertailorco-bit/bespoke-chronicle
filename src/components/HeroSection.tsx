@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const HERO_IMAGE = ""; // Replace with your image path
+const HERO_IMAGE = "/images/hero-main.png";
 
 const scrollTo = (id: string) => {
   const el = document.querySelector(id);
