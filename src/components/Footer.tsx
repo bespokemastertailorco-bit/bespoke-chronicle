@@ -151,42 +151,31 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Column 3: Locations */}
+          {/* Column 3: Showroom */}
           <div>
             <h4 className="text-[11px] uppercase tracking-[0.2em] font-light mb-6 text-white/80">
-              Locations
+              Showroom
             </h4>
             <ul className="space-y-3">
               <li>
                 <Link
-                  to="/locations/delhi"
+                  to="/locations/indore"
                   className="text-xs font-light text-white/60 hover:text-white transition-colors"
                 >
-                  Bespoke Tailor Delhi
+                  Indore Showroom & Atelier
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/locations/dubai"
-                  className="text-xs font-light text-white/60 hover:text-white transition-colors"
-                >
-                  Bespoke Tailor Dubai
-                </Link>
+                <span className="text-xs font-light text-white/40 leading-relaxed block">
+                  Global service — we travel<br />to clients worldwide
+                </span>
               </li>
-              <li>
+              <li className="pt-2">
                 <Link
-                  to="/locations/london"
+                  to="/book-appointment"
                   className="text-xs font-light text-white/60 hover:text-white transition-colors"
                 >
-                  Bespoke Tailor London
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/locations/mumbai"
-                  className="text-xs font-light text-white/60 hover:text-white transition-colors"
-                >
-                  Bespoke Tailor Mumbai
+                  Book a Private Consultation
                 </Link>
               </li>
             </ul>

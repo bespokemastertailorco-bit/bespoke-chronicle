@@ -4,19 +4,19 @@ import { supabase } from "@/lib/supabase";
 import { toast } from "sonner";
 
 const locations = [
-  "Indore Studio",
-  "Mumbai Studio",
-  "Delhi",
-  "Dubai",
-  "London",
+  "Indore Showroom",
+  "Client's Location (We Travel to You)",
 ];
 
 const serviceTypes = [
   "Bespoke Suit",
-  "Ready to Wear",
-  "Alterations",
-  "Consultation",
-  "Black Label Fitting",
+  "Bespoke Blazer",
+  "Bespoke Shirt",
+  "Bespoke Trousers",
+  "Bespoke Coat",
+  "Bespoke Formal Wear",
+  "Fabric Consultation",
+  "Alterations & Adjustments",
 ];
 
 const timeSlots = [
@@ -38,8 +38,8 @@ const BookAppointment = () => {
     email: "",
     phone: "",
     location: prefillLocation
-      ? locations.find((l) => l.toLowerCase().includes(prefillLocation.toLowerCase())) || "Indore Studio"
-      : "Indore Studio",
+      ? locations.find((l) => l.toLowerCase().includes(prefillLocation.toLowerCase())) || "Indore Showroom"
+      : "Indore Showroom",
     service_type: "Bespoke Suit",
     preferred_date: "",
     preferred_time: "Morning 10–12",
@@ -66,7 +66,7 @@ const BookAppointment = () => {
         full_name: "",
         email: "",
         phone: "",
-        location: "Indore Studio",
+        location: "Indore Showroom",
         service_type: "Bespoke Suit",
         preferred_date: "",
         preferred_time: "Morning 10–12",

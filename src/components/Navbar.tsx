@@ -14,113 +14,78 @@ import { useCartContext } from "@/context/CartContext";
 import { useWaitingListContext } from "@/context/WaitingListContext";
 import AuthModal from "./AuthModal";
 
-// Shop dropdown columns data
+// Shop dropdown columns — men's luxury bespoke categories only
 const shopColumns = [
-  {
-    title: "T-Shirts",
-    links: [
-      { label: "View All", href: "/collections/t-shirts" },
-      { label: "Premium Series", href: "/collections/premium-tshirts" },
-      { label: "Polo", href: "/collections/polo" },
-    ],
-  },
   {
     title: "Shirts",
     links: [
       { label: "View All", href: "/collections/shirts" },
       { label: "Classic Fit", href: "/collections/classic-fit" },
       { label: "Slim Fit", href: "/collections/slim-fit" },
-      { label: "Kimono Shirt", href: "/collections/kimono" },
+      { label: "Dress Shirts", href: "/collections/dress-shirts" },
     ],
   },
   {
     title: "Trousers",
     links: [
       { label: "View All", href: "/collections/trousers" },
+      { label: "Formal Trousers", href: "/collections/formal-trousers" },
       { label: "All Season", href: "/collections/all-season-trousers" },
     ],
   },
   {
-    title: "Footwear",
+    title: "Blazers",
     links: [
-      { label: "Sneakers", href: "/collections/sneakers" },
-      { label: "Loafers", href: "/collections/loafers" },
-      { label: "Black Label", href: "/collections/footwear-black-label" },
+      { label: "View All", href: "/collections/blazers" },
+      { label: "Single Breasted", href: "/collections/single-breasted" },
+      { label: "Double Breasted", href: "/collections/double-breasted" },
     ],
   },
   {
-    title: "Knitwear",
+    title: "Suits",
     links: [
-      { label: "Cardigans", href: "/collections/cardigans" },
-      { label: "Vests", href: "/collections/vests" },
-      { label: "Sweaters", href: "/collections/sweaters" },
+      { label: "View All", href: "/collections/suits" },
+      { label: "Two Piece", href: "/collections/two-piece-suits" },
+      { label: "Three Piece", href: "/collections/three-piece-suits" },
     ],
   },
   {
-    title: "Outerwear",
+    title: "Coats",
     links: [
-      { label: "View All", href: "/collections/outerwear" },
-      { label: "Jackets", href: "/collections/jackets" },
-      { label: "Parka", href: "/collections/parka" },
-      { label: "Trench", href: "/collections/trench" },
+      { label: "View All", href: "/collections/coats" },
+      { label: "Overcoat", href: "/collections/overcoats" },
+      { label: "Topcoat", href: "/collections/topcoats" },
     ],
   },
   {
-    title: "Leather Goods",
+    title: "Formal Wear",
     links: [
-      { label: "View All", href: "/collections/leather-goods" },
-      { label: "Clutch", href: "/collections/clutch" },
-      { label: "Travel Bags", href: "/collections/travel" },
-      { label: "Shopper", href: "/collections/shopper" },
-      { label: "Garment Bags", href: "/collections/garment-bags" },
-      { label: "Card Holders", href: "/collections/card-holders" },
-    ],
-  },
-  {
-    title: "Accessories",
-    links: [
-      { label: "View All", href: "/collections/accessories" },
-      { label: "Hats", href: "/collections/hats" },
-      { label: "Pocket Square", href: "/collections/pocket-square" },
-      { label: "Suspenders", href: "/collections/suspenders" },
-      { label: "Ties", href: "/collections/ties" },
-      { label: "Cufflinks", href: "/collections/cufflinks" },
-      { label: "Scarves", href: "/collections/scarves" },
+      { label: "View All", href: "/collections/formal-wear" },
+      { label: "Black Tie", href: "/collections/black-tie" },
+      { label: "White Tie", href: "/collections/white-tie" },
+      { label: "Tuxedo", href: "/collections/tuxedo" },
     ],
   },
 ];
 
-const shopBottomLinks = [
-  { label: "Summer Capsule", href: "/collections/summer" },
-  { label: "Swimwear", href: "/collections/swimwear" },
-];
+const shopBottomLinks: { label: string; href: string }[] = [];
 
-// Locations dropdown data
+// Locations dropdown data — Indore showroom only
 const locationsGroups = [
   {
-    title: "Our Studios",
+    title: "Showroom & Atelier",
     links: [
-      { label: "Indore Studio", href: "/locations/indore" },
-      { label: "Mumbai Studio", href: "/locations/mumbai" },
-    ],
-  },
-  {
-    title: "Bespoke Private Tailor Service",
-    links: [
-      { label: "Delhi", href: "/locations/delhi" },
-      { label: "Dubai", href: "/locations/dubai" },
-      { label: "London", href: "/locations/london" },
+      { label: "Indore Showroom & Atelier", href: "/locations/indore" },
     ],
   },
 ];
 
-// The Maison dropdown data
-const maisonLinks = [
+// About dropdown links
+const aboutLinks = [
   { label: "Our Story", href: "/our-story" },
-  { label: "Creations", href: "/creations" },
-  { label: "The Exclusive Fabrics", href: "/exclusive-fabrics" },
-  { label: "BD Ladies", href: "/bd-ladies" },
-  { label: "The Exclusive Palette", href: "/exclusive-palette" },
+  { label: "How It Works", href: "/our-story" },
+  { label: "Exclusive Fabrics", href: "/exclusive-fabrics" },
+  { label: "Exclusive Palette", href: "/exclusive-palette" },
   { label: "Contact Us", href: "/contact" },
 ];
 
@@ -189,18 +154,18 @@ const Navbar = () => {
             <nav className="hidden lg:flex items-center gap-6">
               <div
                 className="relative"
-                onMouseEnter={() => setActiveDropdown("maison")}
+                onMouseEnter={() => setActiveDropdown("about")}
                 onMouseLeave={() => setActiveDropdown(null)}
               >
                 <button className={`flex items-center gap-1 text-[11px] uppercase tracking-[0.2em] font-light hover:opacity-70 transition-opacity ${textClass}`}>
-                  The Maison
+                  About
                   <ChevronDown size={12} strokeWidth={1} />
                 </button>
-                {activeDropdown === "maison" && (
+                {activeDropdown === "about" && (
                   <div className="absolute top-full left-0 pt-4 animate-in fade-in slide-in-from-top-2 duration-200">
                     <div className="bg-white shadow-xl border border-neutral-100 flex">
                       <div className="p-8 min-w-[200px]">
-                        {maisonLinks.map((link) => (
+                        {aboutLinks.map((link) => (
                           <Link
                             key={link.href}
                             to={link.href}
@@ -210,10 +175,10 @@ const Navbar = () => {
                           </Link>
                         ))}
                       </div>
-                      <div className="w-[300px] h-[350px]">
+                      <div className="w-[280px] h-[320px]">
                         <img
                           src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=600"
-                          alt="The Maison"
+                          alt="About Bespoke Master"
                           className="w-full h-full object-cover"
                         />
                       </div>
@@ -221,12 +186,6 @@ const Navbar = () => {
                   </div>
                 )}
               </div>
-              <Link
-                to="/collections/winter"
-                className={`text-[11px] uppercase tracking-[0.2em] font-light hover:opacity-70 transition-opacity ${textClass}`}
-              >
-                Winter Collection
-              </Link>
               <div
                 className="relative"
                 onMouseEnter={() => setActiveDropdown("shop")}
@@ -317,10 +276,16 @@ const Navbar = () => {
                 )}
               </div>
               <Link
-                to="/black-label"
+                to="/book-appointment"
                 className={`text-[11px] uppercase tracking-[0.2em] font-light hover:opacity-70 transition-opacity ${textClass}`}
               >
-                Black Label
+                Bespoke Service
+              </Link>
+              <Link
+                to="/contact"
+                className={`text-[11px] uppercase tracking-[0.2em] font-light hover:opacity-70 transition-opacity ${textClass}`}
+              >
+                Contact
               </Link>
             </nav>
           </div>
@@ -405,24 +370,24 @@ const Navbar = () => {
             </div>
             <nav className="p-4 overflow-y-auto h-[calc(100%-70px)]">
               <MobileNavItem
-                title="The Maison"
-                links={maisonLinks.map(l => ({ label: l.label, href: l.href }))}
+                title="About"
+                links={aboutLinks}
               />
-              <Link
-                to="/collections/winter"
-                className="block py-3 text-sm uppercase tracking-wider font-light border-b border-neutral-100"
-                onClick={() => setMobileOpen(false)}
-              >
-                Winter Collection
-              </Link>
               <MobileNavShop columns={shopColumns} bottomLinks={shopBottomLinks} />
               <MobileNavLocations groups={locationsGroups} />
               <Link
-                to="/black-label"
+                to="/book-appointment"
                 className="block py-3 text-sm uppercase tracking-wider font-light border-b border-neutral-100"
                 onClick={() => setMobileOpen(false)}
               >
-                Black Label
+                Bespoke Service
+              </Link>
+              <Link
+                to="/contact"
+                className="block py-3 text-sm uppercase tracking-wider font-light border-b border-neutral-100"
+                onClick={() => setMobileOpen(false)}
+              >
+                Contact
               </Link>
               <div className="mt-8 pt-6 border-t border-neutral-200">
                 <button
