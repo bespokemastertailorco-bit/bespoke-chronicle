@@ -5,7 +5,7 @@ const CATEGORY_BLAZERS_IMAGE = ""; // Replace with your image path
 const CATEGORY_COATS_IMAGE = ""; // Replace with your image path
 const CATEGORY_TROUSERS_IMAGE = ""; // Replace with your image path
 const CATEGORY_SHIRTS_IMAGE = ""; // Replace with your image path
-const CATEGORY_FORMALWEAR_IMAGE = ""; // Replace with your image path
+const CATEGORY_FORMALWEAR_IMAGE = "/images/formal-wear.png";
 
 const categories = [
   {
