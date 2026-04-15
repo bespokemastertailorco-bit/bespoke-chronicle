@@ -62,7 +62,7 @@ const Navbar = () => {
               <img
                 src="/logo.png"
                 alt="Bespoke Master"
-                className="h-[76px] w-[76px] object-contain"
+                className="h-14 w-auto object-contain"
               />
             </Link>
           </div>
@@ -173,7 +173,7 @@ const Navbar = () => {
               <img
                 src="/logo.png"
                 alt="Bespoke Master"
-                className="h-[76px] w-[76px] object-contain"
+                className="h-12 w-auto object-contain"
               />
             </Link>
 
