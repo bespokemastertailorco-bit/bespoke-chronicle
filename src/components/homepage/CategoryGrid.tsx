@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 
-const CATEGORY_SUITS_IMAGE = ""; // Replace with your image path
-const CATEGORY_BLAZERS_IMAGE = ""; // Replace with your image path
-const CATEGORY_COATS_IMAGE = ""; // Replace with your image path
-const CATEGORY_TROUSERS_IMAGE = ""; // Replace with your image path
-const CATEGORY_SHIRTS_IMAGE = ""; // Replace with your image path
-const CATEGORY_FORMALWEAR_IMAGE = ""; // Replace with your image path
+const CATEGORY_SUITS_IMAGE = "/images/category-suits.jpg";
+const CATEGORY_BLAZERS_IMAGE = "/images/category-blazers.jpg";
+const CATEGORY_COATS_IMAGE = "/images/category-coats.jpg";
+const CATEGORY_TROUSERS_IMAGE = "/images/category-trousers.jpg";
+const CATEGORY_SHIRTS_IMAGE = "/images/category-shirts.jpg";
+const CATEGORY_FORMALWEAR_IMAGE = "/images/category-formalwear.jpg";
 
 const categories = [
   {
