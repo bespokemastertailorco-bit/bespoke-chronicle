@@ -5,6 +5,8 @@ import { useAuth } from "@/context/AuthContext";
 import { useCartContext } from "@/context/CartContext";
 import AuthModal from "./AuthModal";
 
+const COLLECTION_DROPDOWN_IMAGE = ""; // Replace with your image path
+
 // Collection dropdown - Clothing categories
 const collectionLinks = [
   { label: "Suits", href: "/collections/suits" },
@@ -48,7 +50,7 @@ const Navbar = () => {
       <header className="fixed top-10 left-0 right-0 z-50 bg-white border-b border-[#e8e8e8] h-16">
         <div className="flex items-center justify-between h-full px-6 lg:px-12 max-w-[1400px] mx-auto">
           {/* LEFT: Logo */}
-          <div className="flex items-center w-1/3">
+          <div className="flex items-center">
             <button
               onClick={() => setMobileOpen(true)}
               className="p-2 -ml-2 hover:opacity-70 transition-opacity lg:hidden"
@@ -66,7 +68,7 @@ const Navbar = () => {
           </div>
 
           {/* CENTER: Navigation */}
-          <nav className="hidden lg:flex items-center justify-center gap-8 w-1/3">
+          <nav className="hidden lg:flex items-center justify-center gap-8 flex-1">
             {/* Collection with dropdown */}
             <div
               className="relative"
@@ -105,27 +107,31 @@ const Navbar = () => {
                       
                       {/* Right Side - Hero Image */}
                       <div className="w-[320px] h-[400px] relative">
-                        {/* REPLACE IMAGE: Collection Dropdown Hero */}
-                        <div 
-                          className="w-full h-full bg-[#f5f5f5] flex items-end p-6"
+                        <div
+                          className="w-full h-full flex items-end p-6 relative overflow-hidden"
                           data-photo="replaceable"
+                          style={{
+                            background: COLLECTION_DROPDOWN_IMAGE
+                              ? `url(${COLLECTION_DROPDOWN_IMAGE}) center/cover no-repeat`
+                              : "#2c2c2c",
+                          }}
                         >
-                          <div className="text-white">
+                          {/* Dark overlay for text readability */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                          <div className="relative z-10 text-white">
                             <p className="text-[10px] uppercase tracking-[0.15em] mb-2 opacity-80">
                               Bespoke Master
                             </p>
                             <h3 className="font-heading text-2xl mb-3">
                               Handcrafted in India
                             </h3>
-                            <Link 
-                              to="/collections" 
+                            <Link
+                              to="/collections"
                               className="text-[11px] uppercase tracking-[0.1em] underline underline-offset-4 hover:opacity-70 transition-opacity"
                             >
                               Discover →
                             </Link>
                           </div>
-                          {/* Dark overlay for text readability */}
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent -z-10" />
                         </div>
                       </div>
                     </div>
@@ -161,7 +167,7 @@ const Navbar = () => {
           </nav>
 
           {/* RIGHT: Icons */}
-          <div className="flex items-center justify-end gap-2 w-1/3">
+          <div className="flex items-center justify-end gap-2 ml-auto">
             {/* Mobile Logo */}
             <Link to="/" className="lg:hidden absolute left-1/2 -translate-x-1/2">
               <img

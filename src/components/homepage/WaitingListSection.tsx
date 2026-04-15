@@ -1,5 +1,7 @@
 import { useWaitingListContext } from "@/context/WaitingListContext";
 
+const CTA_BACKGROUND_IMAGE = ""; // Replace with your image path
+
 const WaitingListSection = () => {
   const { openModal } = useWaitingListContext();
 
@@ -9,11 +11,12 @@ const WaitingListSection = () => {
       className="relative w-full min-h-[450px] md:min-h-[550px] flex items-center justify-center cursor-pointer group"
       data-photo="replaceable"
       style={{
-        background: "#1a1a1a",
+        background: CTA_BACKGROUND_IMAGE
+          ? `url(${CTA_BACKGROUND_IMAGE}) center/cover no-repeat`
+          : "#1a1a1a",
       }}
       onClick={openModal}
     >
-      {/* REPLACE IMAGE: CTA Section Background */}
       {/* Dark overlay for text readability */}
       <div className="absolute inset-0 bg-black/40" />
 

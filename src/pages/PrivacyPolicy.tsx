@@ -87,7 +87,7 @@ const PrivacyPolicy = () => {
             If you have any questions about this Privacy Policy or wish to exercise your rights,
             please contact us at:
             <br />
-            Email: theadmasons@gmail.com
+            Email: bespokemastertailor.co@gmail.com
             <br />
             Phone: +91 731 000 0000
             <br />

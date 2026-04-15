@@ -1,35 +1,48 @@
 import { Link } from "react-router-dom";
 
+const CATEGORY_SUITS_IMAGE = ""; // Replace with your image path
+const CATEGORY_BLAZERS_IMAGE = ""; // Replace with your image path
+const CATEGORY_COATS_IMAGE = ""; // Replace with your image path
+const CATEGORY_TROUSERS_IMAGE = ""; // Replace with your image path
+const CATEGORY_SHIRTS_IMAGE = ""; // Replace with your image path
+const CATEGORY_FORMALWEAR_IMAGE = ""; // Replace with your image path
+
 const categories = [
   {
     title: "Suits",
     href: "/collections/suits",
-    imageComment: "<!-- REPLACE IMAGE: Category - Suits -->",
+    image: CATEGORY_SUITS_IMAGE,
+    bg: "#c8c4be",
   },
   {
     title: "Blazers",
     href: "/collections/blazers",
-    imageComment: "<!-- REPLACE IMAGE: Category - Blazers -->",
+    image: CATEGORY_BLAZERS_IMAGE,
+    bg: "#b8b4ae",
   },
   {
     title: "Coats",
     href: "/collections/coats",
-    imageComment: "<!-- REPLACE IMAGE: Category - Coats -->",
+    image: CATEGORY_COATS_IMAGE,
+    bg: "#d2cec8",
   },
   {
     title: "Trousers",
     href: "/collections/trousers",
-    imageComment: "<!-- REPLACE IMAGE: Category - Trousers -->",
+    image: CATEGORY_TROUSERS_IMAGE,
+    bg: "#bfbbb5",
   },
   {
     title: "Shirts",
     href: "/collections/shirts",
-    imageComment: "<!-- REPLACE IMAGE: Category - Shirts -->",
+    image: CATEGORY_SHIRTS_IMAGE,
+    bg: "#cac6c0",
   },
   {
     title: "Formal Wear",
     href: "/collections/formal-wear",
-    imageComment: "<!-- REPLACE IMAGE: Category - Formal Wear -->",
+    image: CATEGORY_FORMALWEAR_IMAGE,
+    bg: "#b5b1ab",
   },
 ];
 
@@ -50,20 +63,28 @@ const CategoryGrid = () => {
               to={cat.href}
               className="group category-cell aspect-square relative overflow-hidden"
             >
-              {cat.imageComment}
               {/* Placeholder background */}
-              <div 
-                className="placeholder-img transition-transform duration-500 group-hover:scale-[1.03]"
+              <div
+                className="placeholder-img transition-all duration-500 group-hover:brightness-90"
                 data-photo="replaceable"
-                style={{ background: "#f0ede8" }}
+                style={{
+                  background: cat.image
+                    ? `url(${cat.image}) center/cover no-repeat`
+                    : cat.bg,
+                }}
               />
+
+              {/* Dark overlay on hover */}
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-all duration-500" />
               
               {/* Category name overlay */}
-              <div className="absolute inset-0 flex items-end p-6">
-                <h3 
-                  className="text-white text-xs uppercase tracking-[0.1em] font-normal"
-                  style={{ 
-                    textShadow: "0 1px 3px rgba(0,0,0,0.3)",
+              <div className="absolute inset-0 flex items-end p-5">
+                <h3
+                  className="text-white uppercase font-normal"
+                  style={{
+                    fontSize: "12px",
+                    letterSpacing: "0.12em",
+                    textShadow: "0 1px 4px rgba(0,0,0,0.4)",
                   }}
                 >
                   {cat.title}

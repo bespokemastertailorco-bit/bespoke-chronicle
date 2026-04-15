@@ -72,7 +72,7 @@ const ShippingPolicy = () => {
           <h3 className="font-medium text-sm mt-6 mb-2">Return Process</h3>
           <p className="text-sm font-light text-neutral-600 leading-relaxed mb-4">
             To initiate a return, please contact our customer service team at
-            theadmasons@gmail.com or +91 731 000 0000. Our team will provide you with a
+            bespokemastertailor.co@gmail.com or +91 731 000 0000. Our team will provide you with a
             return authorization and shipping instructions. Please note:
           </p>
           <ul className="list-disc list-inside text-sm font-light text-neutral-600 leading-relaxed mb-4 space-y-1">
@@ -98,7 +98,7 @@ const ShippingPolicy = () => {
           <h3 className="font-medium text-sm mt-6 mb-2">Damaged or Defective Items</h3>
           <p className="text-sm font-light text-neutral-600 leading-relaxed mb-4">
             If you receive a damaged or defective item, please contact us immediately at
-            theadmasons@gmail.com with photos of the damage. We will arrange for a replacement
+            bespokemastertailor.co@gmail.com with photos of the damage. We will arrange for a replacement
             or full refund at no additional cost to you.
           </p>
 
@@ -106,7 +106,7 @@ const ShippingPolicy = () => {
           <p className="text-sm font-light text-neutral-600 leading-relaxed mb-4">
             For any questions regarding shipping or returns, please contact us:
             <br />
-            Email: theadmasons@gmail.com
+            Email: bespokemastertailor.co@gmail.com
             <br />
             Phone: +91 731 000 0000
             <br />

@@ -2,10 +2,10 @@ import { useEffect } from "react";
 import AnnouncementBar from "@/components/AnnouncementBar";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
-import PrivateTailoringSection from "@/components/homepage/PrivateTailoringSection";
 import CategoryGrid from "@/components/homepage/CategoryGrid";
+import EditorialSplitSection from "@/components/homepage/EditorialSplitSection";
+import PrivateTailoringSection from "@/components/homepage/PrivateTailoringSection";
 import TailoringProcess from "@/components/homepage/TailoringProcess";
-import EditorialSection from "@/components/homepage/EditorialSection";
 import WaitingListSection from "@/components/homepage/WaitingListSection";
 import Footer from "@/components/Footer";
 import CartPanel from "@/components/CartPanel";
@@ -23,10 +23,10 @@ const Index = () => {
       <Navbar />
       <main className="pt-16">
         <HeroSection />
-        <PrivateTailoringSection />
         <CategoryGrid />
+        <EditorialSplitSection />
+        <PrivateTailoringSection />
         <TailoringProcess />
-        <EditorialSection />
         <WaitingListSection />
       </main>
       <Footer />

@@ -78,7 +78,7 @@ const Terms = () => {
           <p className="text-sm font-light text-neutral-600 leading-relaxed mb-4">
             If you have any questions about these Terms and Conditions, please contact us at:
             <br />
-            Email: theadmasons@gmail.com
+            Email: bespokemastertailor.co@gmail.com
             <br />
             Phone: +91 731 000 0000
           </p>

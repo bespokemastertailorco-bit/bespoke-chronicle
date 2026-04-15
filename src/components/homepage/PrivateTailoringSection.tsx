@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 
+const BESPOKE_SECTION_IMAGE = ""; // Replace with your image path
+
 const PrivateTailoringSection = () => {
   return (
     <section id="services" className="w-full py-20 md:py-24 bg-white">
@@ -24,11 +26,14 @@ const PrivateTailoringSection = () => {
 
           {/* Right: Tall Placeholder Image */}
           <div className="w-full lg:w-1/2">
-            {/* REPLACE IMAGE: Bespoke Service Section */}
-            <div 
+            <div
               className="aspect-[3/4] w-full"
               data-photo="replaceable"
-              style={{ background: "#e8e4df" }}
+              style={{
+                background: BESPOKE_SECTION_IMAGE
+                  ? `url(${BESPOKE_SECTION_IMAGE}) center/cover no-repeat`
+                  : "#e8e4df",
+              }}
             />
           </div>
         </div>

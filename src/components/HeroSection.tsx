@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 
+const HERO_IMAGE = ""; // Replace with your image path
+
 const scrollTo = (id: string) => {
   const el = document.querySelector(id);
   if (el) el.scrollIntoView({ behavior: "smooth" });
@@ -11,12 +13,11 @@ const HeroSection = () => {
       id="home"
       className="relative w-full h-screen flex items-center overflow-hidden"
     >
-      {/* REPLACE IMAGE: Hero Background — add your photo here */}
       <div
         className="absolute inset-0 w-full h-full"
         data-photo="replaceable"
         style={{
-          background: "#1a1a1a",
+          background: HERO_IMAGE ? `url(${HERO_IMAGE}) center/cover no-repeat` : "#1c1a17",
         }}
       />
 

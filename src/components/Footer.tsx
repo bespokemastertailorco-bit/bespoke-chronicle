@@ -153,10 +153,10 @@ const Footer = () => {
             </address>
             <p className="text-[13px] font-light">
               <a 
-                href="mailto:theadmasons@gmail.com" 
+                href="mailto:bespokemastertailor.co@gmail.com" 
                 className="text-[#6b6b6b] hover:text-[#1a1a1a] hover:underline transition-all duration-300"
               >
-                theadmasons@gmail.com
+                bespokemastertailor.co@gmail.com
               </a>
             </p>
           </div>
