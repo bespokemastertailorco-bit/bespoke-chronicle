@@ -105,7 +105,7 @@ const Header = () => {
             <img
               src="/logo.png"
               alt="Bespoke Master"
-              className="h-10 w-auto object-contain"
+              className="h-[76px] w-[76px] object-contain"
             />
           </a>
 
