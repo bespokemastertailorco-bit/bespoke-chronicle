@@ -22,16 +22,17 @@ const PrivateTailoringSection = () => {
         <div className="w-full lg:w-1/2 flex items-center justify-center p-8 lg:p-16">
           <div className="max-w-md text-center">
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl text-white mb-6">
-              Private Tailoring
+              Bespoke Tailoring
             </h2>
             <p className="font-body text-white/70 text-sm md:text-base font-light mb-8 leading-relaxed">
-              The experience of a garment created exclusively for you.
+              Handcrafted men's luxury wear — built around your body, your life, and your style. 
+              Every stitch placed by our master tailors in Indore, India.
             </p>
             <Link
               to="/our-story"
               className="inline-block px-8 py-3 bg-white text-black text-xs uppercase tracking-[0.2em] font-light hover:bg-white/90 transition-colors mb-8"
             >
-              DISCOVER THE BESPOKE UNIVERSE
+              DISCOVER THE BESPOKE EXPERIENCE
             </Link>
             <div className="mt-4">
               <span className="font-heading text-white/40 text-xl tracking-[0.3em] uppercase">

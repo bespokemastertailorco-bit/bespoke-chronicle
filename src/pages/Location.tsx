@@ -10,47 +10,17 @@ const locationData: Record<
     image: string;
     hours: string;
     mapsUrl: string;
+    note?: string;
   }
 > = {
   indore: {
-    city: "Indore Studio",
-    address: "ED-184, 3rd Floor, Scheme No. 94, Sector D, Khajrana Square, Indore, MP",
+    city: "Indore Showroom & Atelier",
+    address: "ED-184, 3rd Floor, Scheme No. 94, Sector D, Khajrana Square, Indore, MP — India",
     phone: "+91 731 000 0000",
     image: "https://images.unsplash.com/photo-1529543544282-ea669407fca3?w=1200",
     hours: "Mon – Sat: 10:00 AM – 7:00 PM",
     mapsUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3680.1234567890123!2d75.8567!3d22.7196",
-  },
-  mumbai: {
-    city: "Mumbai Studio",
-    address: "Bandra West, Mumbai, Maharashtra",
-    phone: "+91 22 0000 0000",
-    image: "https://images.unsplash.com/photo-1529543544282-ea669407fca3?w=1200",
-    hours: "Mon – Sat: 10:00 AM – 7:00 PM",
-    mapsUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.1234567890123!2d72.8295!3d19.0596",
-  },
-  delhi: {
-    city: "Delhi",
-    address: "The Leela Palace, Chanakyapuri, New Delhi",
-    phone: "+91 11 0000 0000",
-    image: "https://images.unsplash.com/photo-1534430480872-3498386e7856?w=1200",
-    hours: "By Appointment Only",
-    mapsUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.1234567890123!2d77.1928!3d28.5983",
-  },
-  dubai: {
-    city: "Dubai",
-    address: "Taj Hotel, Business Bay, Dubai, UAE",
-    phone: "+971 4 000 0000",
-    image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1200",
-    hours: "By Appointment Only",
-    mapsUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3607.1234567890123!2d55.2693!3d25.1853",
-  },
-  london: {
-    city: "London",
-    address: "The Franklin Hotel, 24 Egerton Gardens, London SW3",
-    phone: "+44 20 0000 0000",
-    image: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1200",
-    hours: "By Appointment Only",
-    mapsUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2484.1234567890123!2d-0.1706!3d51.4975",
+    note: "Our permanent showroom and manufacturing atelier. All garments are handcrafted here.",
   },
 };
 
@@ -99,6 +69,12 @@ const Location = () => {
             <h2 className="font-heading text-2xl mb-6">{location.city}</h2>
 
             <div className="space-y-4 text-sm font-light">
+              {location.note && (
+                <div className="bg-neutral-50 border border-neutral-100 px-4 py-3 rounded">
+                  <p className="text-neutral-600 italic">{location.note}</p>
+                </div>
+              )}
+
               <div>
                 <h3 className="font-medium text-black mb-1">Address</h3>
                 <p className="text-neutral-600">{location.address}</p>
@@ -118,13 +94,21 @@ const Location = () => {
                 <h3 className="font-medium text-black mb-1">Hours</h3>
                 <p className="text-neutral-600">{location.hours}</p>
               </div>
+
+              <div>
+                <h3 className="font-medium text-black mb-1">Global Bespoke Service</h3>
+                <p className="text-neutral-600 leading-relaxed">
+                  Can't visit us in Indore? Our master tailors travel to clients worldwide.
+                  Book a private consultation and we will come to your city, your office, or your home.
+                </p>
+              </div>
             </div>
 
             <Link
-              to={`/book-appointment?location=${encodeURIComponent(city || "")}`}
+              to="/book-appointment"
               className="inline-block mt-8 bg-black text-white px-8 py-3 text-xs uppercase tracking-[0.2em] font-light hover:bg-neutral-800 transition-colors"
             >
-              BOOK APPOINTMENT HERE
+              Book a Private Consultation
             </Link>
           </div>
 
