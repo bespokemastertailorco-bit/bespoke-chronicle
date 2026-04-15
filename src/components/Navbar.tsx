@@ -151,7 +151,6 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    // Close mobile menu on route change
     setMobileOpen(false);
     setActiveDropdown(null);
   }, [location]);
@@ -171,9 +170,7 @@ const Navbar = () => {
       : "bg-white/95 backdrop-blur-sm border-neutral-200";
 
   const textClass =
-    showWordmark && !isScrolled
-      ? "text-white"
-      : "text-black";
+    showWordmark && !isScrolled ? "text-white" : "text-black";
 
   return (
     <>
@@ -181,7 +178,6 @@ const Navbar = () => {
         className={`fixed top-[38px] left-0 right-0 z-50 transition-all duration-500 border-b ${navBgClass}`}
       >
         <div className="flex items-center justify-between px-4 md:px-8 lg:px-12 py-4">
-          {/* Left: Hamburger / Menu */}
           <div className="flex items-center w-1/3">
             <button
               onClick={() => setMobileOpen(true)}
@@ -190,10 +186,7 @@ const Navbar = () => {
             >
               <Menu size={22} strokeWidth={1} />
             </button>
-
-            {/* Desktop Nav Links */}
             <nav className="hidden lg:flex items-center gap-6">
-              {/* The Maison - Mega Dropdown */}
               <div
                 className="relative"
                 onMouseEnter={() => setActiveDropdown("maison")}
@@ -228,16 +221,12 @@ const Navbar = () => {
                   </div>
                 )}
               </div>
-
-              {/* Winter Collection */}
               <Link
                 to="/collections/winter"
                 className={`text-[11px] uppercase tracking-[0.2em] font-light hover:opacity-70 transition-opacity ${textClass}`}
               >
                 Winter Collection
               </Link>
-
-              {/* Shop - Mega Dropdown with Columns */}
               <div
                 className="relative"
                 onMouseEnter={() => setActiveDropdown("shop")}
@@ -286,8 +275,6 @@ const Navbar = () => {
                   </div>
                 )}
               </div>
-
-              {/* Locations */}
               <div
                 className="relative"
                 onMouseEnter={() => setActiveDropdown("locations")}
@@ -329,8 +316,6 @@ const Navbar = () => {
                   </div>
                 )}
               </div>
-
-              {/* Black Label */}
               <Link
                 to="/black-label"
                 className={`text-[11px] uppercase tracking-[0.2em] font-light hover:opacity-70 transition-opacity ${textClass}`}
@@ -339,8 +324,6 @@ const Navbar = () => {
               </Link>
             </nav>
           </div>
-
-          {/* Center: Logo */}
           <div className="flex items-center justify-center w-1/3">
             {showWordmark ? (
               <Link to="/" className="font-heading text-2xl md:text-3xl tracking-[0.15em] text-white">
@@ -356,10 +339,7 @@ const Navbar = () => {
               </Link>
             )}
           </div>
-
-          {/* Right: Icons */}
           <div className={`flex items-center justify-end gap-4 w-1/3 ${textClass}`}>
-            {/* Login */}
             {user ? (
               <div className="relative group">
                 <button className="p-2 hover:opacity-70 transition-opacity">
@@ -385,8 +365,6 @@ const Navbar = () => {
                 <User size={18} strokeWidth={1} />
               </button>
             )}
-
-            {/* Search */}
             <button
               onClick={() => setSearchOpen(true)}
               className="p-2 hover:opacity-70 transition-opacity"
@@ -394,8 +372,6 @@ const Navbar = () => {
             >
               <Search size={18} strokeWidth={1} />
             </button>
-
-            {/* Cart */}
             <button
               onClick={() => setCartOpen(true)}
               className="p-2 hover:opacity-70 transition-opacity relative"
@@ -411,8 +387,6 @@ const Navbar = () => {
           </div>
         </div>
       </header>
-
-      {/* Mobile Menu Slide-in */}
       {mobileOpen && (
         <>
           <div
@@ -429,9 +403,7 @@ const Navbar = () => {
                 <X size={20} strokeWidth={1} />
               </button>
             </div>
-
             <nav className="p-4 overflow-y-auto h-[calc(100%-70px)]">
-              {/* Mobile Nav Items with Expand/Collapse */}
               <MobileNavItem
                 title="The Maison"
                 links={maisonLinks.map(l => ({ label: l.label, href: l.href }))}
@@ -452,7 +424,6 @@ const Navbar = () => {
               >
                 Black Label
               </Link>
-
               <div className="mt-8 pt-6 border-t border-neutral-200">
                 <button
                   onClick={() => {
@@ -469,8 +440,6 @@ const Navbar = () => {
           </div>
         </>
       )}
-
-      {/* Search Overlay */}
       {searchOpen && (
         <div className="fixed inset-0 bg-white z-[80] animate-in fade-in duration-200">
           <div className="flex items-center justify-between px-6 py-4 border-b">
@@ -496,13 +465,11 @@ const Navbar = () => {
           </div>
         </div>
       )}
-
       {authModalOpen && <AuthModal onClose={() => setAuthModalOpen(false)} />}
     </>
   );
 };
 
-// Mobile Nav Components
 const MobileNavItem = ({ title, links }: { title: string; links: { label: string; href: string }[] }) => {
   const [expanded, setExpanded] = useState(false);
   return (

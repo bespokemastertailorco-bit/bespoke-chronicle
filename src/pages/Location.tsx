@@ -78,9 +78,11 @@ const Location = () => {
     <div className="min-h-screen bg-white">
       {/* Hero */}
       <div className="relative h-[50vh] min-h-[400px]">
+        {/* REPLACE IMAGE: Location Hero */}
         <img
           src={location.image}
           alt={location.city}
+          data-photo="replaceable"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black/40" />

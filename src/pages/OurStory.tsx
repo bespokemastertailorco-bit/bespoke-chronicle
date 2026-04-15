@@ -46,9 +46,11 @@ const OurStory = () => {
             </p>
           </div>
           <div className="order-1 md:order-2">
+            {/* REPLACE IMAGE: Our Story Section */}
             <img
               src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=800"
               alt="Our Story"
+              data-photo="replaceable"
               className="w-full aspect-[4/5] object-cover"
             />
           </div>
@@ -60,9 +62,11 @@ const OurStory = () => {
         <div className="max-w-6xl mx-auto px-4 md:px-8">
           <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-center">
             <div>
+              {/* REPLACE IMAGE: 40 Hours Stitching Process */}
               <img
                 src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800"
                 alt="40 Hours of Stitching"
+                data-photo="replaceable"
                 className="w-full aspect-[4/5] object-cover"
               />
             </div>
@@ -100,11 +104,22 @@ const OurStory = () => {
               in the colour of the chosen fabric. It takes approximately three fittings to create a
               flawless Bespoke Master garment.
             </p>
+            <p className="font-body text-sm md:text-base font-light text-neutral-600 leading-relaxed mt-4">
+              Our atelier and manufacturing unit are based in Indore, India. Clients are welcome to
+              visit us in person, or our master tailors can travel to meet you — at your home, office,
+              or city, anywhere in the world. Every garment is handcrafted by hand and delivered to
+              you with care.
+            </p>
+            <p className="font-body text-xs font-light text-neutral-400 mt-6 italic">
+              We also offer private-label manufacturing for select luxury brands, with worldwide delivery.
+            </p>
           </div>
           <div className="order-1 md:order-2">
+            {/* REPLACE IMAGE: Bespoke Experience Section */}
             <img
               src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800"
               alt="Bespoke Experience"
+              data-photo="replaceable"
               className="w-full aspect-[4/5] object-cover"
             />
           </div>

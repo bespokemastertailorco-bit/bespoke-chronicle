@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { RefreshCcw, Globe, Calendar } from "lucide-react";
+import { RefreshCcw, Globe, HandHelping } from "lucide-react";
 
 const badges = [
   {
@@ -13,9 +13,9 @@ const badges = [
     href: "/shipping-policy",
   },
   {
-    icon: Calendar,
-    title: "BOOK A PRIVATE APPOINTMENT",
-    href: "/book-appointment",
+    icon: HandHelping,
+    title: "HANDCRAFTED IN INDIA",
+    href: "/our-story",
   },
 ];
 

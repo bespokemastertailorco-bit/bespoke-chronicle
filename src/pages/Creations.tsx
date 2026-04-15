@@ -4,10 +4,8 @@ const creationImages = [
   { src: "https://images.unsplash.com/photo-1594938298603-c8148c4b4de1?w=600", label: "Bespoke Suit" },
   { src: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=600", label: "Formal Wear" },
   { src: "https://images.unsplash.com/photo-1617137968427-85924c800a22?w=600", label: "Evening Wear" },
-  { src: "https://images.unsplash.com/photo-1583744946564-b52ac1c389c8?w=600", label: "Winter Collection" },
   { src: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600", label: "Atelier" },
   { src: "https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=600", label: "Accessories" },
-  { src: "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?w=600", label: "Black Label" },
   { src: "https://images.unsplash.com/photo-1625910513956-7e95d8e2e04b?w=600", label: "Ceremony" },
 ];
 
@@ -20,9 +18,11 @@ const Creations = () => {
     <div className="min-h-screen bg-white">
       {/* Hero */}
       <div className="relative h-[70vh] min-h-[500px]">
+        {/* REPLACE IMAGE: Creations Hero */}
         <img
           src="https://images.unsplash.com/photo-1583744946564-b52ac1c389c8?w=1600"
           alt="Creations"
+          data-photo="replaceable"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black/40" />
@@ -40,10 +40,13 @@ const Creations = () => {
             <div
               key={index}
               className="group relative break-inside-avoid overflow-hidden cursor-pointer"
+              data-photo="replaceable"
             >
+              {/* REPLACE IMAGE: Creation {img.label} */}
               <img
                 src={img.src}
                 alt={img.label}
+                data-photo="replaceable"
                 className="w-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center">

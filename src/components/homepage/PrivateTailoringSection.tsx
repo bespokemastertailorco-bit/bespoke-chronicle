@@ -6,12 +6,14 @@ const PrivateTailoringSection = () => {
       <div className="flex flex-col lg:flex-row">
         {/* Left: Video */}
         <div className="w-full lg:w-1/2 aspect-video lg:aspect-auto lg:min-h-[600px]">
+          {/* REPLACE IMAGE: Bespoke Service Video Poster */}
           <video
             autoPlay
             muted
             loop
             playsInline
             poster="https://images.unsplash.com/photo-1594938298603-c8148c4b4de1?w=1200"
+            data-photo="replaceable"
             className="w-full h-full object-cover"
           >
             <source src="https://assets.mixkit.co/videos/preview/mixkit-hands-of-a-tailor-measuring-a-piece-of-fabric-4818-large.mp4" type="video/mp4" />

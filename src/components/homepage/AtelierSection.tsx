@@ -8,10 +8,12 @@ const AtelierSection = () => {
           THE HEART OF BESPOKE MASTER: THE ATELIER
         </p>
         
+        {/* REPLACE IMAGE: Atelier Section Editorial */}
         <div className="relative aspect-[16/9] max-w-5xl mx-auto mb-8 overflow-hidden">
           <img
             src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600"
             alt="The Atelier"
+            data-photo="replaceable"
             className="w-full h-full object-cover hover:scale-[1.02] transition-transform duration-700"
           />
         </div>

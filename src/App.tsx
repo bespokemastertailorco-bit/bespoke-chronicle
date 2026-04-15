@@ -12,9 +12,7 @@ import OurStory from "./pages/OurStory.tsx";
 import Creations from "./pages/Creations.tsx";
 import ExclusiveFabrics from "./pages/ExclusiveFabrics.tsx";
 import ExclusivePalette from "./pages/ExclusivePalette.tsx";
-import BDLadies from "./pages/BDLadies.tsx";
 import Contact from "./pages/Contact.tsx";
-import BlackLabel from "./pages/BlackLabel.tsx";
 import Collections from "./pages/Collections.tsx";
 import Product from "./pages/Product.tsx";
 import BookAppointment from "./pages/BookAppointment.tsx";
@@ -41,9 +39,7 @@ const App = () => (
                 <Route path="/creations" element={<Creations />} />
                 <Route path="/exclusive-fabrics" element={<ExclusiveFabrics />} />
                 <Route path="/exclusive-palette" element={<ExclusivePalette />} />
-                <Route path="/bd-ladies" element={<BDLadies />} />
                 <Route path="/contact" element={<Contact />} />
-                <Route path="/black-label" element={<BlackLabel />} />
                 <Route path="/collections" element={<Collections />} />
                 <Route path="/collections/:collectionId" element={<Collections />} />
                 <Route path="/product/:id" element={<Product />} />

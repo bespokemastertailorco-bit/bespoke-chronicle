@@ -32,9 +32,11 @@ const HeroSection = () => {
       id="home"
       className="relative w-full h-screen flex items-center overflow-hidden"
     >
+      {/* REPLACE IMAGE: Hero Background */}
       {/* Parallax Background with Unsplash image */}
       <div
         className="absolute inset-0 w-full h-[120%] -top-[10%] parallax-bg"
+        data-photo="replaceable"
         style={{
           backgroundImage: `url(${HERO_IMAGE})`,
           backgroundSize: "cover",

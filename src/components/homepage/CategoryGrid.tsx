@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 
+// Category images - REPLACE IMAGE comments apply to each category photo
 const categories = [
   {
     title: "Into the Cold",
@@ -43,10 +44,13 @@ const CategoryGrid = () => {
               key={cat.href}
               to={cat.href}
               className="group relative aspect-[4/5] overflow-hidden"
+              data-photo="replaceable"
             >
+              {/* REPLACE IMAGE: {cat.title} Category */}
               <img
                 src={cat.image}
                 alt={cat.title}
+                data-photo="replaceable"
                 className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />

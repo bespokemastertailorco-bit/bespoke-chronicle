@@ -6,7 +6,7 @@ import {
   MessageCircle,
   RefreshCcw,
   Globe,
-  Calendar,
+  HandHelping,
   CreditCard,
 } from "lucide-react";
 import { supabase } from "@/lib/supabase";
@@ -73,16 +73,16 @@ const Footer = () => {
               </span>
             </Link>
             <Link
-              to="/book-appointment"
+              to="/our-story"
               className="flex flex-col items-center text-center group"
             >
-              <Calendar
+              <HandHelping
                 size={24}
                 strokeWidth={1}
                 className="text-white/60 mb-3 group-hover:text-white transition-colors"
               />
               <span className="text-[10px] uppercase tracking-[0.15em] font-light text-white/80 group-hover:text-white transition-colors">
-                BOOK A PRIVATE APPOINTMENT
+                HANDCRAFTED IN INDIA
               </span>
             </Link>
           </div>

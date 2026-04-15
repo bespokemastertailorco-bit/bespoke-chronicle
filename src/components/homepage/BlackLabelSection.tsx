@@ -42,6 +42,7 @@ const BlackLabelSection = () => {
         </div>
 
         {/* Grid */}
+        {/* REPLACE IMAGE: Formal Wear Collection Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
           {tiles.map((tile, index) => (
             <Link
@@ -50,10 +51,12 @@ const BlackLabelSection = () => {
               className={`group relative aspect-square overflow-hidden ${
                 index === 1 ? "md:col-span-2 md:row-span-2" : ""
               }`}
+              data-photo="replaceable"
             >
               <img
                 src={tile}
                 alt={`Black Label ${index + 1}`}
+                data-photo="replaceable"
                 className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
               />
             </Link>
