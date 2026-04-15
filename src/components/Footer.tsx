@@ -15,7 +15,7 @@ const Footer = () => {
               <img
                 src="/logo.png"
                 alt="Bespoke Master"
-                className="h-10 w-auto object-contain"
+                className="h-[76px] w-[76px] object-contain"
               />
             </Link>
             <p className="text-[13px] font-light text-[#6b6b6b] leading-relaxed mb-6">
