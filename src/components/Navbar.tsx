@@ -325,19 +325,13 @@ const Navbar = () => {
             </nav>
           </div>
           <div className="flex items-center justify-center w-1/3">
-            {showWordmark ? (
-              <Link to="/" className="font-heading text-2xl md:text-3xl tracking-[0.15em] text-white">
-                BESPOKE MASTER
-              </Link>
-            ) : (
-              <Link to="/">
-                <img
-                  src="/logo.png"
-                  alt="Bespoke Master"
-                  className="h-10 w-auto object-contain"
-                />
-              </Link>
-            )}
+            <Link to="/">
+              <img
+                src="/logo.png"
+                alt="Bespoke Master"
+                className="h-[74px] w-[74px] object-contain"
+              />
+            </Link>
           </div>
           <div className={`flex items-center justify-end gap-4 w-1/3 ${textClass}`}>
             {user ? (
