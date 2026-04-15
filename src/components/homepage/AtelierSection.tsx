@@ -5,7 +5,7 @@ const AtelierSection = () => {
     <section className="w-full bg-[#0A0A0A] py-16 md:py-24">
       <div className="max-w-6xl mx-auto px-4 md:px-8 text-center">
         <p className="text-white/60 text-[11px] uppercase tracking-[0.3em] font-light mb-6">
-          Handcrafted in Indore — The Heart of Bespoke Master
+          THE HEART OF BESPOKE MASTER: THE ATELIER
         </p>
         
         <div className="relative aspect-[16/9] max-w-5xl mx-auto mb-8 overflow-hidden">

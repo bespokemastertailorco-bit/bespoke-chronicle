@@ -2,34 +2,34 @@ import { Link } from "react-router-dom";
 
 const categories = [
   {
-    title: "Shirts",
-    href: "/collections/shirts",
-    image: "https://images.unsplash.com/photo-1594938298603-c8148c4b4de1?w=500",
+    title: "Into the Cold",
+    href: "/collections/winter",
+    image: "https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=500",
   },
   {
-    title: "Trousers",
-    href: "/collections/trousers",
-    image: "https://images.unsplash.com/photo-1617137968427-85924c800a22?w=500",
+    title: "Under the Sun",
+    href: "/collections/summer",
+    image: "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=500",
   },
   {
-    title: "Blazers",
-    href: "/collections/blazers",
-    image: "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?w=500",
+    title: "LEATHER GOODS",
+    href: "/collections/leather-goods",
+    image: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=500",
   },
   {
-    title: "Suits",
-    href: "/collections/suits",
-    image: "https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?w=500",
+    title: "SNEAKERS",
+    href: "/collections/sneakers",
+    image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500",
   },
   {
-    title: "Coats",
-    href: "/collections/coats",
-    image: "https://images.unsplash.com/photo-1583744946564-b52ac1c389c8?w=500",
+    title: "LOAFERS",
+    href: "/collections/loafers",
+    image: "https://images.unsplash.com/photo-1614252370105-f18b42ac4b84?w=500",
   },
   {
-    title: "Formal Wear",
-    href: "/collections/formal-wear",
-    image: "https://images.unsplash.com/photo-1560243563-062bfc001d68?w=500",
+    title: "TRAVEL BAGS",
+    href: "/collections/travel",
+    image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500",
   },
 ];
 
@@ -37,14 +37,6 @@ const CategoryGrid = () => {
   return (
     <section className="w-full py-12 md:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
-        <div className="text-center mb-10">
-          <p className="text-neutral-400 text-[10px] uppercase tracking-[0.35em] font-light mb-3">
-            Men's Luxury Collections
-          </p>
-          <h2 className="font-heading text-2xl md:text-3xl uppercase tracking-wider text-black">
-            Shop by Category
-          </h2>
-        </div>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
           {categories.map((cat) => (
             <Link

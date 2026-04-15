@@ -19,7 +19,7 @@ const OurStory = () => {
       {/* Header */}
       <div className="pt-[140px] pb-12 px-4 md:px-8 max-w-5xl mx-auto text-center">
         <p className="text-[11px] uppercase tracking-[0.3em] text-neutral-500 mb-4">
-          Bespoke Master — Indore, India
+          THE MAISON
         </p>
         <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl mb-4">
           Master Tailor, Est. 1998

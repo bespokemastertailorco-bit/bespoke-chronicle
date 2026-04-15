@@ -4,19 +4,19 @@ import { supabase } from "@/lib/supabase";
 import { toast } from "sonner";
 
 const locations = [
-  "Indore Showroom",
-  "Client's Location (We Travel to You)",
+  "Indore Studio",
+  "Mumbai Studio",
+  "Delhi",
+  "Dubai",
+  "London",
 ];
 
 const serviceTypes = [
   "Bespoke Suit",
-  "Bespoke Blazer",
-  "Bespoke Shirt",
-  "Bespoke Trousers",
-  "Bespoke Coat",
-  "Bespoke Formal Wear",
-  "Fabric Consultation",
-  "Alterations & Adjustments",
+  "Ready to Wear",
+  "Alterations",
+  "Consultation",
+  "Black Label Fitting",
 ];
 
 const timeSlots = [
@@ -39,7 +39,7 @@ const BookAppointment = () => {
     phone: "",
     location: prefillLocation
       ? locations.find((l) => l.toLowerCase().includes(prefillLocation.toLowerCase())) || "Indore Studio"
-      : "Indore Showroom",
+      : "Indore Studio",
     service_type: "Bespoke Suit",
     preferred_date: "",
     preferred_time: "Morning 10–12",
@@ -66,7 +66,7 @@ const BookAppointment = () => {
         full_name: "",
         email: "",
         phone: "",
-        location: "Indore Showroom",
+        location: "Indore Studio",
         service_type: "Bespoke Suit",
         preferred_date: "",
         preferred_time: "Morning 10–12",
@@ -88,7 +88,7 @@ const BookAppointment = () => {
             BOOK A PRIVATE APPOINTMENT
           </h1>
           <p className="font-body text-sm font-light text-neutral-600">
-            Whether you visit our Indore showroom or we travel to you — book your personal bespoke consultation with our master tailor.
+            Reserve your exclusive fitting session at a Bespoke Master location.
           </p>
         </div>
 

@@ -21,19 +21,16 @@ const BlackLabel = () => {
       <div className="relative h-[70vh] min-h-[500px]">
         <img
           src="https://images.unsplash.com/photo-1598033129183-c4f50c736f10?w=1600"
-          alt="Bespoke Formal Wear"
+          alt="Black Label"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-black/55" />
+        <div className="absolute inset-0 bg-black/50" />
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
-          <p className="text-white/50 text-[10px] uppercase tracking-[0.35em] font-light mb-4">
-            Handcrafted in Indore
-          </p>
-          <h1 className="font-heading text-4xl md:text-6xl lg:text-7xl text-white tracking-[0.15em] font-light mb-4">
-            Bespoke Formal Wear
+          <h1 className="font-heading text-4xl md:text-6xl lg:text-7xl text-[#D4AF37] tracking-[0.2em] font-light mb-4">
+            BLACK LABEL
           </h1>
-          <p className="font-body text-white/70 text-lg font-light max-w-xl">
-            The pinnacle of men's handcrafted tailoring — built for your most significant moments.
+          <p className="font-body text-white/70 text-lg font-light">
+            The pinnacle of Bespoke Master craftsmanship.
           </p>
         </div>
       </div>
@@ -44,14 +41,14 @@ const BlackLabel = () => {
           {gridImages.map((img, index) => (
             <Link
               key={index}
-              to="/collections/formal-wear"
+              to="/collections/black-label"
               className={`group relative overflow-hidden ${
                 index % 3 === 1 ? "md:row-span-2 aspect-[3/4]" : "aspect-square"
               }`}
             >
               <img
                 src={img}
-                alt={`Bespoke Formal Wear ${index + 1}`}
+                alt={`Black Label ${index + 1}`}
                 className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
               />
             </Link>
@@ -63,17 +60,17 @@ const BlackLabel = () => {
       <section className="border-t border-white/10">
         <div className="max-w-4xl mx-auto px-4 md:px-8 py-16 md:py-24 text-center">
           <h2 className="font-heading text-2xl md:text-3xl text-white mb-6">
-            Book a Private Consultation
+            BOOK A PRIVATE FITTING FOR BLACK LABEL
           </h2>
           <p className="font-body text-white/60 text-sm font-light mb-8 max-w-xl mx-auto">
-            Every piece in our formal collection is handcrafted to measure in our Indore atelier.
-            Meet our master tailor — in Indore or wherever you are in the world.
+            Experience the ultimate in bespoke luxury. Schedule a private appointment
+            with our master tailor to discuss your Black Label garment.
           </p>
           <Link
             to="/book-appointment"
-            className="inline-block px-8 py-3 border border-white/50 text-white text-xs uppercase tracking-[0.2em] font-light hover:bg-white hover:text-black transition-all"
+            className="inline-block px-8 py-3 border border-[#D4AF37] text-[#D4AF37] text-xs uppercase tracking-[0.2em] font-light hover:bg-[#D4AF37] hover:text-black transition-all"
           >
-            Book Now
+            BOOK NOW
           </Link>
         </div>
       </section>

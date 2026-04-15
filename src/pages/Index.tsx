@@ -3,14 +3,14 @@ import AnnouncementBar from "@/components/AnnouncementBar";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import PrivateTailoringSection from "@/components/homepage/PrivateTailoringSection";
-import CategoryGrid from "@/components/homepage/CategoryGrid";
-import TailoringProcess from "@/components/homepage/TailoringProcess";
-import AtelierSection from "@/components/homepage/AtelierSection";
-import WorldwideBespokeSection from "@/components/homepage/LocationEventsSection";
-import EditorialVideoPair from "@/components/homepage/EditorialVideoPair";
-import BespokeEditorialSection from "@/components/homepage/BlackLabelSection";
-import TrustBadges from "@/components/homepage/TrustBadges";
+import ReadyToWearSection from "@/components/homepage/ReadyToWearSection";
 import WaitingListSection from "@/components/homepage/WaitingListSection";
+import CategoryGrid from "@/components/homepage/CategoryGrid";
+import AtelierSection from "@/components/homepage/AtelierSection";
+import LocationEventsSection from "@/components/homepage/LocationEventsSection";
+import EditorialVideoPair from "@/components/homepage/EditorialVideoPair";
+import BlackLabelSection from "@/components/homepage/BlackLabelSection";
+import TrustBadges from "@/components/homepage/TrustBadges";
 import Footer from "@/components/Footer";
 import CartPanel from "@/components/CartPanel";
 import WaitingListModal from "@/components/WaitingListModal";
@@ -27,14 +27,14 @@ const Index = () => {
       <main>
         <HeroSection />
         <PrivateTailoringSection />
-        <CategoryGrid />
-        <TailoringProcess />
-        <AtelierSection />
-        <WorldwideBespokeSection />
-        <EditorialVideoPair />
-        <BespokeEditorialSection />
-        <TrustBadges />
+        <ReadyToWearSection />
         <WaitingListSection />
+        <CategoryGrid />
+        <AtelierSection />
+        <LocationEventsSection />
+        <EditorialVideoPair />
+        <BlackLabelSection />
+        <TrustBadges />
       </main>
       <Footer />
       <CartPanel />
