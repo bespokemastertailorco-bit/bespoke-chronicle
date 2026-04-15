@@ -1,0 +1,647 @@
+import { useState, useEffect, useRef } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import {
+  Menu,
+  X,
+  User,
+  Search,
+  ShoppingBag,
+  ChevronDown,
+  ChevronRight,
+} from "lucide-react";
+import { useAuth } from "@/context/AuthContext";
+import { useCartContext } from "@/context/CartContext";
+import { useWaitingListContext } from "@/context/WaitingListContext";
+import AuthModal from "./AuthModal";
+
+// Shop dropdown columns data
+const shopColumns = [
+  {
+    title: "T-Shirts",
+    links: [
+      { label: "View All", href: "/collections/t-shirts" },
+      { label: "Premium Series", href: "/collections/premium-tshirts" },
+      { label: "Polo", href: "/collections/polo" },
+    ],
+  },
+  {
+    title: "Shirts",
+    links: [
+      { label: "View All", href: "/collections/shirts" },
+      { label: "Classic Fit", href: "/collections/classic-fit" },
+      { label: "Slim Fit", href: "/collections/slim-fit" },
+      { label: "Kimono Shirt", href: "/collections/kimono" },
+    ],
+  },
+  {
+    title: "Trousers",
+    links: [
+      { label: "View All", href: "/collections/trousers" },
+      { label: "All Season", href: "/collections/all-season-trousers" },
+    ],
+  },
+  {
+    title: "Footwear",
+    links: [
+      { label: "Sneakers", href: "/collections/sneakers" },
+      { label: "Loafers", href: "/collections/loafers" },
+      { label: "Black Label", href: "/collections/footwear-black-label" },
+    ],
+  },
+  {
+    title: "Knitwear",
+    links: [
+      { label: "Cardigans", href: "/collections/cardigans" },
+      { label: "Vests", href: "/collections/vests" },
+      { label: "Sweaters", href: "/collections/sweaters" },
+    ],
+  },
+  {
+    title: "Outerwear",
+    links: [
+      { label: "View All", href: "/collections/outerwear" },
+      { label: "Jackets", href: "/collections/jackets" },
+      { label: "Parka", href: "/collections/parka" },
+      { label: "Trench", href: "/collections/trench" },
+    ],
+  },
+  {
+    title: "Leather Goods",
+    links: [
+      { label: "View All", href: "/collections/leather-goods" },
+      { label: "Clutch", href: "/collections/clutch" },
+      { label: "Travel Bags", href: "/collections/travel" },
+      { label: "Shopper", href: "/collections/shopper" },
+      { label: "Garment Bags", href: "/collections/garment-bags" },
+      { label: "Card Holders", href: "/collections/card-holders" },
+    ],
+  },
+  {
+    title: "Accessories",
+    links: [
+      { label: "View All", href: "/collections/accessories" },
+      { label: "Hats", href: "/collections/hats" },
+      { label: "Pocket Square", href: "/collections/pocket-square" },
+      { label: "Suspenders", href: "/collections/suspenders" },
+      { label: "Ties", href: "/collections/ties" },
+      { label: "Cufflinks", href: "/collections/cufflinks" },
+      { label: "Scarves", href: "/collections/scarves" },
+    ],
+  },
+];
+
+const shopBottomLinks = [
+  { label: "Summer Capsule", href: "/collections/summer" },
+  { label: "Swimwear", href: "/collections/swimwear" },
+];
+
+// Locations dropdown data
+const locationsGroups = [
+  {
+    title: "Our Studios",
+    links: [
+      { label: "Indore Studio", href: "/locations/indore" },
+      { label: "Mumbai Studio", href: "/locations/mumbai" },
+    ],
+  },
+  {
+    title: "Bespoke Private Tailor Service",
+    links: [
+      { label: "Delhi", href: "/locations/delhi" },
+      { label: "Dubai", href: "/locations/dubai" },
+      { label: "London", href: "/locations/london" },
+    ],
+  },
+];
+
+// The Maison dropdown data
+const maisonLinks = [
+  { label: "Our Story", href: "/our-story" },
+  { label: "Creations", href: "/creations" },
+  { label: "The Exclusive Fabrics", href: "/exclusive-fabrics" },
+  { label: "BD Ladies", href: "/bd-ladies" },
+  { label: "The Exclusive Palette", href: "/exclusive-palette" },
+  { label: "Contact Us", href: "/contact" },
+];
+
+const Navbar = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { user, signOut } = useAuth();
+  const { totalItems, setIsOpen: setCartOpen } = useCartContext();
+  const { openModal: openWaitingList } = useWaitingListContext();
+
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [authModalOpen, setAuthModalOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+
+  const isHomepage = location.pathname === "/";
+  const showWordmark = isHomepage && !isScrolled;
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 100);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    // Close mobile menu on route change
+    setMobileOpen(false);
+    setActiveDropdown(null);
+  }, [location]);
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+      setSearchOpen(false);
+      setSearchQuery("");
+    }
+  };
+
+  const navBgClass =
+    showWordmark && !isScrolled
+      ? "bg-transparent border-transparent"
+      : "bg-white/95 backdrop-blur-sm border-neutral-200";
+
+  const textClass =
+    showWordmark && !isScrolled
+      ? "text-white"
+      : "text-black";
+
+  return (
+    <>
+      <header
+        className={`fixed top-[38px] left-0 right-0 z-50 transition-all duration-500 border-b ${navBgClass}`}
+      >
+        <div className="flex items-center justify-between px-4 md:px-8 lg:px-12 py-4">
+          {/* Left: Hamburger / Menu */}
+          <div className="flex items-center w-1/3">
+            <button
+              onClick={() => setMobileOpen(true)}
+              className={`p-2 -ml-2 hover:opacity-70 transition-opacity lg:hidden ${textClass}`}
+              aria-label="Open menu"
+            >
+              <Menu size={22} strokeWidth={1} />
+            </button>
+
+            {/* Desktop Nav Links */}
+            <nav className="hidden lg:flex items-center gap-6">
+              {/* The Maison - Mega Dropdown */}
+              <div
+                className="relative"
+                onMouseEnter={() => setActiveDropdown("maison")}
+                onMouseLeave={() => setActiveDropdown(null)}
+              >
+                <button className={`flex items-center gap-1 text-[11px] uppercase tracking-[0.2em] font-light hover:opacity-70 transition-opacity ${textClass}`}>
+                  The Maison
+                  <ChevronDown size={12} strokeWidth={1} />
+                </button>
+                {activeDropdown === "maison" && (
+                  <div className="absolute top-full left-0 pt-4 animate-in fade-in slide-in-from-top-2 duration-200">
+                    <div className="bg-white shadow-xl border border-neutral-100 flex">
+                      <div className="p-8 min-w-[200px]">
+                        {maisonLinks.map((link) => (
+                          <Link
+                            key={link.href}
+                            to={link.href}
+                            className="block py-2 text-[11px] uppercase tracking-wider font-light text-neutral-600 hover:text-black transition-colors"
+                          >
+                            {link.label}
+                          </Link>
+                        ))}
+                      </div>
+                      <div className="w-[300px] h-[350px]">
+                        <img
+                          src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=600"
+                          alt="The Maison"
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Winter Collection */}
+              <Link
+                to="/collections/winter"
+                className={`text-[11px] uppercase tracking-[0.2em] font-light hover:opacity-70 transition-opacity ${textClass}`}
+              >
+                Winter Collection
+              </Link>
+
+              {/* Shop - Mega Dropdown with Columns */}
+              <div
+                className="relative"
+                onMouseEnter={() => setActiveDropdown("shop")}
+                onMouseLeave={() => setActiveDropdown(null)}
+              >
+                <button className={`flex items-center gap-1 text-[11px] uppercase tracking-[0.2em] font-light hover:opacity-70 transition-opacity ${textClass}`}>
+                  Shop
+                  <ChevronDown size={12} strokeWidth={1} />
+                </button>
+                {activeDropdown === "shop" && (
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 animate-in fade-in slide-in-from-top-2 duration-200">
+                    <div className="bg-white shadow-xl border border-neutral-100 p-8">
+                      <div className="grid grid-cols-4 gap-x-12 gap-y-6">
+                        {shopColumns.map((col) => (
+                          <div key={col.title}>
+                            <h4 className="text-[10px] uppercase tracking-wider font-medium mb-3 text-neutral-900">
+                              {col.title}
+                            </h4>
+                            <ul className="space-y-2">
+                              {col.links.map((link) => (
+                                <li key={link.href}>
+                                  <Link
+                                    to={link.href}
+                                    className="text-[11px] font-light text-neutral-600 hover:text-black transition-colors"
+                                  >
+                                    {link.label}
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="mt-6 pt-4 border-t border-neutral-100 flex gap-6">
+                        {shopBottomLinks.map((link) => (
+                          <Link
+                            key={link.href}
+                            to={link.href}
+                            className="text-[11px] uppercase tracking-wider font-light text-neutral-600 hover:text-black transition-colors"
+                          >
+                            {link.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Locations */}
+              <div
+                className="relative"
+                onMouseEnter={() => setActiveDropdown("locations")}
+                onMouseLeave={() => setActiveDropdown(null)}
+              >
+                <button className={`flex items-center gap-1 text-[11px] uppercase tracking-[0.2em] font-light hover:opacity-70 transition-opacity ${textClass}`}>
+                  Locations
+                  <ChevronDown size={12} strokeWidth={1} />
+                </button>
+                {activeDropdown === "locations" && (
+                  <div className="absolute top-full left-0 pt-4 animate-in fade-in slide-in-from-top-2 duration-200">
+                    <div className="bg-white shadow-xl border border-neutral-100 p-8 min-w-[320px]">
+                      {locationsGroups.map((group) => (
+                        <div key={group.title} className="mb-6 last:mb-0">
+                          <h4 className="text-[10px] uppercase tracking-wider font-medium mb-3 text-neutral-900">
+                            {group.title}
+                          </h4>
+                          <ul className="space-y-2">
+                            {group.links.map((link) => (
+                              <li key={link.href}>
+                                <Link
+                                  to={link.href}
+                                  className="text-[11px] font-light text-neutral-600 hover:text-black transition-colors"
+                                >
+                                  {link.label}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                      <Link
+                        to="/book-appointment"
+                        className="block mt-4 bg-black text-white text-center py-2.5 text-[10px] uppercase tracking-widest font-light hover:bg-neutral-800 transition-colors"
+                      >
+                        BOOK NOW
+                      </Link>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Black Label */}
+              <Link
+                to="/black-label"
+                className={`text-[11px] uppercase tracking-[0.2em] font-light hover:opacity-70 transition-opacity ${textClass}`}
+              >
+                Black Label
+              </Link>
+            </nav>
+          </div>
+
+          {/* Center: Logo */}
+          <div className="flex items-center justify-center w-1/3">
+            {showWordmark ? (
+              <Link to="/" className="font-heading text-2xl md:text-3xl tracking-[0.15em] text-white">
+                BESPOKE MASTER
+              </Link>
+            ) : (
+              <Link to="/">
+                <img
+                  src="/logo.png"
+                  alt="Bespoke Master"
+                  className="h-10 w-auto object-contain"
+                />
+              </Link>
+            )}
+          </div>
+
+          {/* Right: Icons */}
+          <div className={`flex items-center justify-end gap-4 w-1/3 ${textClass}`}>
+            {/* Login */}
+            {user ? (
+              <div className="relative group">
+                <button className="p-2 hover:opacity-70 transition-opacity">
+                  <User size={18} strokeWidth={1} />
+                </button>
+                <div className="absolute right-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                  <div className="bg-white shadow-lg border border-neutral-100 py-2 min-w-[150px]">
+                    <button
+                      onClick={signOut}
+                      className="w-full text-left px-4 py-2 text-xs font-light hover:bg-neutral-50 transition-colors"
+                    >
+                      Logout
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <button
+                onClick={() => setAuthModalOpen(true)}
+                className="p-2 hover:opacity-70 transition-opacity"
+                aria-label="Login"
+              >
+                <User size={18} strokeWidth={1} />
+              </button>
+            )}
+
+            {/* Search */}
+            <button
+              onClick={() => setSearchOpen(true)}
+              className="p-2 hover:opacity-70 transition-opacity"
+              aria-label="Search"
+            >
+              <Search size={18} strokeWidth={1} />
+            </button>
+
+            {/* Cart */}
+            <button
+              onClick={() => setCartOpen(true)}
+              className="p-2 hover:opacity-70 transition-opacity relative"
+              aria-label="Cart"
+            >
+              <ShoppingBag size={18} strokeWidth={1} />
+              {totalItems > 0 && (
+                <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-black text-white text-[10px] flex items-center justify-center rounded-full">
+                  {totalItems}
+                </span>
+              )}
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* Mobile Menu Slide-in */}
+      {mobileOpen && (
+        <>
+          <div
+            className="fixed inset-0 bg-black/50 z-[60] lg:hidden"
+            onClick={() => setMobileOpen(false)}
+          />
+          <div className="fixed top-0 left-0 h-full w-[85%] max-w-sm bg-white z-[70] shadow-2xl lg:hidden animate-in slide-in-from-left duration-300">
+            <div className="flex items-center justify-between p-4 border-b">
+              <span className="font-heading text-lg tracking-wider">Menu</span>
+              <button
+                onClick={() => setMobileOpen(false)}
+                className="p-2 hover:bg-neutral-100 transition-colors"
+              >
+                <X size={20} strokeWidth={1} />
+              </button>
+            </div>
+
+            <nav className="p-4 overflow-y-auto h-[calc(100%-70px)]">
+              {/* Mobile Nav Items with Expand/Collapse */}
+              <MobileNavItem
+                title="The Maison"
+                links={maisonLinks.map(l => ({ label: l.label, href: l.href }))}
+              />
+              <Link
+                to="/collections/winter"
+                className="block py-3 text-sm uppercase tracking-wider font-light border-b border-neutral-100"
+                onClick={() => setMobileOpen(false)}
+              >
+                Winter Collection
+              </Link>
+              <MobileNavShop columns={shopColumns} bottomLinks={shopBottomLinks} />
+              <MobileNavLocations groups={locationsGroups} />
+              <Link
+                to="/black-label"
+                className="block py-3 text-sm uppercase tracking-wider font-light border-b border-neutral-100"
+                onClick={() => setMobileOpen(false)}
+              >
+                Black Label
+              </Link>
+
+              <div className="mt-8 pt-6 border-t border-neutral-200">
+                <button
+                  onClick={() => {
+                    setMobileOpen(false);
+                    setAuthModalOpen(true);
+                  }}
+                  className="flex items-center gap-2 py-2 text-sm font-light"
+                >
+                  <User size={16} strokeWidth={1} />
+                  {user ? "My Account" : "Login / Register"}
+                </button>
+              </div>
+            </nav>
+          </div>
+        </>
+      )}
+
+      {/* Search Overlay */}
+      {searchOpen && (
+        <div className="fixed inset-0 bg-white z-[80] animate-in fade-in duration-200">
+          <div className="flex items-center justify-between px-6 py-4 border-b">
+            <form onSubmit={handleSearch} className="flex-1 max-w-2xl">
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search..."
+                autoFocus
+                className="w-full text-lg font-light placeholder:text-neutral-400 focus:outline-none"
+              />
+            </form>
+            <button
+              onClick={() => {
+                setSearchOpen(false);
+                setSearchQuery("");
+              }}
+              className="p-2 hover:bg-neutral-100 transition-colors"
+            >
+              <X size={24} strokeWidth={1} />
+            </button>
+          </div>
+        </div>
+      )}
+
+      {authModalOpen && <AuthModal onClose={() => setAuthModalOpen(false)} />}
+    </>
+  );
+};
+
+// Mobile Nav Components
+const MobileNavItem = ({ title, links }: { title: string; links: { label: string; href: string }[] }) => {
+  const [expanded, setExpanded] = useState(false);
+  return (
+    <div className="border-b border-neutral-100">
+      <button
+        onClick={() => setExpanded(!expanded)}
+        className="flex items-center justify-between w-full py-3 text-sm uppercase tracking-wider font-light"
+      >
+        {title}
+        <ChevronDown
+          size={16}
+          strokeWidth={1}
+          className={`transition-transform ${expanded ? "rotate-180" : ""}`}
+        />
+      </button>
+      {expanded && (
+        <div className="pb-3 pl-4 space-y-2">
+          {links.map((link) => (
+            <Link
+              key={link.href}
+              to={link.href}
+              className="block py-1.5 text-xs font-light text-neutral-600"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
+const MobileNavShop = ({
+  columns,
+  bottomLinks,
+}: {
+  columns: { title: string; links: { label: string; href: string }[] }[];
+  bottomLinks: { label: string; href: string }[];
+}) => {
+  const [expanded, setExpanded] = useState(false);
+  return (
+    <div className="border-b border-neutral-100">
+      <button
+        onClick={() => setExpanded(!expanded)}
+        className="flex items-center justify-between w-full py-3 text-sm uppercase tracking-wider font-light"
+      >
+        Shop
+        <ChevronDown
+          size={16}
+          strokeWidth={1}
+          className={`transition-transform ${expanded ? "rotate-180" : ""}`}
+        />
+      </button>
+      {expanded && (
+        <div className="pb-3 pl-4">
+          {columns.map((col) => (
+            <div key={col.title} className="mb-4">
+              <h4 className="text-[10px] uppercase tracking-wider font-medium mb-2 text-neutral-900">
+                {col.title}
+              </h4>
+              <div className="space-y-1.5">
+                {col.links.map((link) => (
+                  <Link
+                    key={link.href}
+                    to={link.href}
+                    className="block py-1 text-xs font-light text-neutral-600"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          ))}
+          <div className="pt-3 border-t border-neutral-100 flex gap-4">
+            {bottomLinks.map((link) => (
+              <Link
+                key={link.href}
+                to={link.href}
+                className="text-xs font-light text-neutral-600"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+const MobileNavLocations = ({
+  groups,
+}: {
+  groups: { title: string; links: { label: string; href: string }[] }[];
+}) => {
+  const [expanded, setExpanded] = useState(false);
+  return (
+    <div className="border-b border-neutral-100">
+      <button
+        onClick={() => setExpanded(!expanded)}
+        className="flex items-center justify-between w-full py-3 text-sm uppercase tracking-wider font-light"
+      >
+        Locations
+        <ChevronDown
+          size={16}
+          strokeWidth={1}
+          className={`transition-transform ${expanded ? "rotate-180" : ""}`}
+        />
+      </button>
+      {expanded && (
+        <div className="pb-3 pl-4">
+          {groups.map((group) => (
+            <div key={group.title} className="mb-4">
+              <h4 className="text-[10px] uppercase tracking-wider font-medium mb-2 text-neutral-900">
+                {group.title}
+              </h4>
+              <div className="space-y-1.5">
+                {group.links.map((link) => (
+                  <Link
+                    key={link.href}
+                    to={link.href}
+                    className="block py-1 text-xs font-light text-neutral-600"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          ))}
+          <Link
+            to="/book-appointment"
+            className="block mt-4 bg-black text-white text-center py-2.5 text-[10px] uppercase tracking-widest font-light"
+          >
+            BOOK NOW
+          </Link>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default Navbar;

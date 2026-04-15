@@ -1,166 +1,283 @@
 import { useState } from "react";
-import { Instagram, Facebook, Linkedin, ArrowUp, MessageCircle } from "lucide-react";
+import { Link } from "react-router-dom";
+import {
+  Instagram,
+  Facebook,
+  MessageCircle,
+  RefreshCcw,
+  Globe,
+  Calendar,
+  CreditCard,
+} from "lucide-react";
+import { supabase } from "@/lib/supabase";
+import { toast } from "sonner";
 
-const navScroll = (href: string) => {
-  if (href === "#home") {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  } else {
-    const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
-  }
-};
+const currentYear = new Date().getFullYear();
 
 const Footer = () => {
   const [email, setEmail] = useState("");
-  const [subscribed, setSubscribed] = useState(false);
-  const currentYear = new Date().getFullYear();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubscribe = () => {
-    if (email.trim() && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      setSubscribed(true);
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email.trim()) return;
+
+    setIsSubmitting(true);
+    try {
+      const { error } = await supabase
+        .from("newsletter_subscribers")
+        .insert([{ email: email.trim(), created_at: new Date().toISOString() }]);
+
+      if (error) throw error;
+
+      toast.success("Thank you for subscribing!");
+      setEmail("");
+    } catch (error) {
+      console.error("Newsletter signup error:", error);
+      toast.error("Failed to subscribe. Please try again.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
   return (
-    <footer className="border-t border-border py-16 md:py-24 px-6 md:px-12">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8">
-        {/* About */}
-        <div>
-          <h4 className="editorial-label mb-6">About</h4>
-          <ul className="space-y-3">
-            <li>
-              <button onClick={() => navScroll("#about")} className="font-body text-sm font-light text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
-                Our Story
-              </button>
-            </li>
-            <li>
-              <button onClick={() => navScroll("#services")} className="font-body text-sm font-light text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
-                Craftsmanship
-              </button>
-            </li>
-            <li>
-              <button onClick={() => navScroll("#contact")} className="font-body text-sm font-light text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
-                Book a Visit
-              </button>
-            </li>
-          </ul>
-        </div>
-
-        {/* Customer Service */}
-        <div>
-          <h4 className="editorial-label mb-6">Customer Service</h4>
-          <ul className="space-y-3">
-            <li>
-              <button onClick={() => navScroll("#contact")} className="font-body text-sm font-light text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
-                Contact Us
-              </button>
-            </li>
-            <li>
-              <button onClick={() => navScroll("#services")} className="font-body text-sm font-light text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
-                Size Guide
-              </button>
-            </li>
-            <li>
-              <button onClick={() => navScroll("#gallery")} className="font-body text-sm font-light text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
-                Gallery
-              </button>
-            </li>
-          </ul>
-        </div>
-
-        {/* Legal */}
-        <div>
-          <h4 className="editorial-label mb-6">Legal</h4>
-          <ul className="space-y-3">
-            {/* TODO: Replace # with real policy pages when available */}
-            <li><a href="#" className="font-body text-sm font-light text-muted-foreground hover:text-foreground transition-colors">Privacy Policy</a></li>
-            <li><a href="#" className="font-body text-sm font-light text-muted-foreground hover:text-foreground transition-colors">Terms of Service</a></li>
-            <li><a href="#" className="font-body text-sm font-light text-muted-foreground hover:text-foreground transition-colors">Cookie Policy</a></li>
-          </ul>
-        </div>
-
-        {/* Contact & Newsletter */}
-        <div>
-          <h4 className="editorial-label mb-6">Stay Connected</h4>
-          <p className="font-body text-sm font-light text-muted-foreground mb-2">
-            Malhar Mega Mall, Indore
-          </p>
-          <p className="font-body text-sm font-light text-muted-foreground mb-6">
-            +91 731 000 0000
-          </p>
-
-          {subscribed ? (
-            <p className="font-body text-sm font-light text-foreground mb-6">Thank you for subscribing!</p>
-          ) : (
-            <div className="flex border-b border-border pb-2 mb-6">
-              <input
-                type="email"
-                placeholder="Your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && handleSubscribe()}
-                className="flex-1 bg-transparent font-body text-sm font-light text-foreground placeholder:text-muted-foreground outline-none"
+    <footer className="bg-[#0A0A0A] text-white">
+      {/* Row 1: Trust Badges */}
+      <div className="border-b border-white/10">
+        <div className="max-w-6xl mx-auto px-4 md:px-8 py-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+            <Link
+              to="/shipping-policy"
+              className="flex flex-col items-center text-center group"
+            >
+              <RefreshCcw
+                size={24}
+                strokeWidth={1}
+                className="text-white/60 mb-3 group-hover:text-white transition-colors"
               />
-              <button onClick={handleSubscribe} className="editorial-label text-foreground cursor-pointer hover:opacity-70 transition-opacity">
-                Subscribe
-              </button>
-            </div>
-          )}
-
-          {/* Social icons */}
-          <div className="flex items-center gap-5">
-            <a
-              href="https://instagram.com/bespokemasterglobal/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram"
-              className="text-muted-foreground hover:text-foreground transition-colors"
+              <span className="text-[10px] uppercase tracking-[0.15em] font-light text-white/80 group-hover:text-white transition-colors">
+                FREE RETURNS & EXCHANGES
+              </span>
+            </Link>
+            <Link
+              to="/shipping-policy"
+              className="flex flex-col items-center text-center group"
             >
-              <Instagram size={18} strokeWidth={1} />
-            </a>
-            <a
-              href="https://facebook.com/bespokemaster"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Facebook"
-              className="text-muted-foreground hover:text-foreground transition-colors"
+              <Globe
+                size={24}
+                strokeWidth={1}
+                className="text-white/60 mb-3 group-hover:text-white transition-colors"
+              />
+              <span className="text-[10px] uppercase tracking-[0.15em] font-light text-white/80 group-hover:text-white transition-colors">
+                FREE WORLDWIDE SHIPPING
+              </span>
+            </Link>
+            <Link
+              to="/book-appointment"
+              className="flex flex-col items-center text-center group"
             >
-              <Facebook size={18} strokeWidth={1} />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/bespoke-master-b2781a402"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <Linkedin size={18} strokeWidth={1} />
-            </a>
-            <a
-              href="https://wa.me/917310000000"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="WhatsApp"
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <MessageCircle size={18} strokeWidth={1} />
-            </a>
+              <Calendar
+                size={24}
+                strokeWidth={1}
+                className="text-white/60 mb-3 group-hover:text-white transition-colors"
+              />
+              <span className="text-[10px] uppercase tracking-[0.15em] font-light text-white/80 group-hover:text-white transition-colors">
+                BOOK A PRIVATE APPOINTMENT
+              </span>
+            </Link>
           </div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p className="font-body text-xs font-light text-muted-foreground text-center">
-          © {currentYear} Bespoke Master. All rights reserved.
-        </p>
-        <button
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          aria-label="Back to top"
-          className="flex items-center gap-2 editorial-label hover:text-foreground transition-colors cursor-pointer"
-        >
-          <ArrowUp size={14} strokeWidth={1} />
-          Back to Top
-        </button>
+      {/* Row 2: Main Footer Grid */}
+      <div className="max-w-6xl mx-auto px-4 md:px-8 py-12 md:py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+          {/* Column 1: Brand */}
+          <div>
+            <Link to="/" className="inline-block mb-6">
+              <img
+                src="/logo.png"
+                alt="Bespoke Master"
+                className="h-10 w-auto object-contain invert"
+              />
+            </Link>
+            <address className="not-italic text-xs font-light text-white/60 leading-relaxed mb-4">
+              ED-184, 3rd Floor, Scheme No. 94,<br />
+              Sector D, Khajrana Square,<br />
+              Indore, MP - India
+            </address>
+            <p className="text-xs font-light text-white/60 mb-1">
+              <a href="tel:+917310000000" className="hover:text-white transition-colors">
+                +91 731 000 0000
+              </a>
+            </p>
+            <p className="text-xs font-light text-white/60">
+              <a href="mailto:theadmasons@gmail.com" className="hover:text-white transition-colors">
+                theadmasons@gmail.com
+              </a>
+            </p>
+          </div>
+
+          {/* Column 2: Useful Links */}
+          <div>
+            <h4 className="text-[11px] uppercase tracking-[0.2em] font-light mb-6 text-white/80">
+              Useful Links
+            </h4>
+            <ul className="space-y-3">
+              <li>
+                <Link
+                  to="/terms"
+                  className="text-xs font-light text-white/60 hover:text-white transition-colors"
+                >
+                  Terms & Conditions
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/privacy-policy"
+                  className="text-xs font-light text-white/60 hover:text-white transition-colors"
+                >
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/shipping-policy"
+                  className="text-xs font-light text-white/60 hover:text-white transition-colors"
+                >
+                  Shipping & Returns
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 3: Locations */}
+          <div>
+            <h4 className="text-[11px] uppercase tracking-[0.2em] font-light mb-6 text-white/80">
+              Locations
+            </h4>
+            <ul className="space-y-3">
+              <li>
+                <Link
+                  to="/locations/delhi"
+                  className="text-xs font-light text-white/60 hover:text-white transition-colors"
+                >
+                  Bespoke Tailor Delhi
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/locations/dubai"
+                  className="text-xs font-light text-white/60 hover:text-white transition-colors"
+                >
+                  Bespoke Tailor Dubai
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/locations/london"
+                  className="text-xs font-light text-white/60 hover:text-white transition-colors"
+                >
+                  Bespoke Tailor London
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/locations/mumbai"
+                  className="text-xs font-light text-white/60 hover:text-white transition-colors"
+                >
+                  Bespoke Tailor Mumbai
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 4: Newsletter */}
+          <div>
+            <h4 className="text-[11px] uppercase tracking-[0.2em] font-light mb-6 text-white/80">
+              Subscribe to newsletter
+            </h4>
+            <form onSubmit={handleNewsletterSubmit} className="flex flex-col gap-3">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email"
+                required
+                className="bg-transparent border border-white/30 px-4 py-2.5 text-xs font-light text-white placeholder:text-white/40 focus:outline-none focus:border-white/60 transition-colors"
+              />
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="bg-white text-black px-4 py-2.5 text-[10px] uppercase tracking-[0.15em] font-light hover:bg-white/90 transition-colors disabled:opacity-50"
+              >
+                {isSubmitting ? "SUBMITTING..." : "SUBSCRIBE"}
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      {/* Row 3: Bottom Bar */}
+      <div className="border-t border-white/10">
+        <div className="max-w-6xl mx-auto px-4 md:px-8 py-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            {/* Copyright */}
+            <p className="text-[10px] font-light text-white/50">
+              © {currentYear} — Bespoke Master®
+            </p>
+
+            {/* Payment Icons */}
+            <div className="flex items-center gap-3">
+              <span className="text-[10px] font-light text-white/50 uppercase tracking-wider">
+                Visa
+              </span>
+              <span className="text-[10px] font-light text-white/50 uppercase tracking-wider">
+                Mastercard
+              </span>
+              <span className="text-[10px] font-light text-white/50 uppercase tracking-wider">
+                UPI
+              </span>
+              <span className="text-[10px] font-light text-white/50 uppercase tracking-wider">
+                PayPal
+              </span>
+              <span className="text-[10px] font-light text-white/50 uppercase tracking-wider">
+                Amex
+              </span>
+            </div>
+
+            {/* Social Icons */}
+            <div className="flex items-center gap-4">
+              <a
+                href="https://instagram.com/bespokemasterglobal/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="text-white/60 hover:text-white transition-colors"
+              >
+                <Instagram size={18} strokeWidth={1} />
+              </a>
+              <a
+                href="https://facebook.com/bespokemaster"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                className="text-white/60 hover:text-white transition-colors"
+              >
+                <Facebook size={18} strokeWidth={1} />
+              </a>
+              <a
+                href="https://wa.me/917310000000"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="WhatsApp"
+                className="text-white/60 hover:text-white transition-colors"
+              >
+                <MessageCircle size={18} strokeWidth={1} />
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </footer>
   );
