@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 const EDITORIAL_LEFT_IMAGE = "/images/formal-wear.png";
-const EDITORIAL_RIGHT_IMAGE = ""; // Replace with your image path
+const EDITORIAL_RIGHT_IMAGE = "/images/ready-to-wear.jpg";
 
 const editorialLeft = {
   bg: "#2c2c2c",

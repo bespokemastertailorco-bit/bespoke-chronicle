@@ -156,12 +156,6 @@ const Navbar = () => {
               to="/contact"
               className="text-[11px] uppercase tracking-[0.12em] font-medium text-[#1a1a1a] hover:opacity-70 transition-opacity"
             >
-              Showroom
-            </Link>
-            <Link
-              to="/contact"
-              className="text-[11px] uppercase tracking-[0.12em] font-medium text-[#1a1a1a] hover:opacity-70 transition-opacity"
-            >
               Contact
             </Link>
           </nav>
@@ -272,13 +266,6 @@ const Navbar = () => {
                 onClick={() => setMobileOpen(false)}
               >
                 Our Craft
-              </Link>
-              <Link
-                to="/contact"
-                className="block py-3 text-sm uppercase tracking-wider font-light text-[#1a1a1a] border-b border-[#e8e8e8]"
-                onClick={() => setMobileOpen(false)}
-              >
-                Showroom
               </Link>
               <Link
                 to="/contact"
