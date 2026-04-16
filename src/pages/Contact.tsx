@@ -60,25 +60,6 @@ const Contact = () => {
 
             <div className="space-y-6 text-sm font-light text-neutral-600">
               <div>
-                <h3 className="font-medium text-black mb-2">Address</h3>
-                <address className="not-italic leading-relaxed">
-                  ED-184, 3rd Floor, Scheme No. 94,<br />
-                  Sector D, Khajrana Square,<br />
-                  Indore, MP - India
-                </address>
-              </div>
-
-              <div>
-                <h3 className="font-medium text-black mb-2">Phone / WhatsApp</h3>
-                <a
-                  href="tel:+917310000000"
-                  className="hover:text-black transition-colors"
-                >
-                  +91 731 000 0000
-                </a>
-              </div>
-
-              <div>
                 <h3 className="font-medium text-black mb-2">Email</h3>
                 <a
                   href="mailto:bespokemastertailor.co@gmail.com"
