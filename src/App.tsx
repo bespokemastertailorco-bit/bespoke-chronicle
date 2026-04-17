@@ -13,6 +13,7 @@ import Creations from "./pages/Creations.tsx";
 import ExclusiveFabrics from "./pages/ExclusiveFabrics.tsx";
 import ExclusivePalette from "./pages/ExclusivePalette.tsx";
 import Contact from "./pages/Contact.tsx";
+import Manufacturing from "./pages/Manufacturing.tsx";
 import Collections from "./pages/Collections.tsx";
 import Product from "./pages/Product.tsx";
 import BookAppointment from "./pages/BookAppointment.tsx";
@@ -40,6 +41,7 @@ const App = () => (
                 <Route path="/exclusive-fabrics" element={<ExclusiveFabrics />} />
                 <Route path="/exclusive-palette" element={<ExclusivePalette />} />
                 <Route path="/contact" element={<Contact />} />
+                <Route path="/manufacturing" element={<Manufacturing />} />
                 <Route path="/collections" element={<Collections />} />
                 <Route path="/collections/:collectionId" element={<Collections />} />
                 <Route path="/product/:id" element={<Product />} />

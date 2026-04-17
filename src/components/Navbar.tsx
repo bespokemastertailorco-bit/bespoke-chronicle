@@ -153,6 +153,12 @@ const Navbar = () => {
               Our Craft
             </Link>
             <Link
+              to="/manufacturing"
+              className="text-[11px] uppercase tracking-[0.12em] font-medium text-[#1a1a1a] hover:opacity-70 transition-opacity"
+            >
+              Manufacturing Unit
+            </Link>
+            <Link
               to="/contact"
               className="text-[11px] uppercase tracking-[0.12em] font-medium text-[#1a1a1a] hover:opacity-70 transition-opacity"
             >
@@ -266,6 +272,13 @@ const Navbar = () => {
                 onClick={() => setMobileOpen(false)}
               >
                 Our Craft
+              </Link>
+              <Link
+                to="/manufacturing"
+                className="block py-3 text-sm uppercase tracking-wider font-light text-[#1a1a1a] border-b border-[#e8e8e8]"
+                onClick={() => setMobileOpen(false)}
+              >
+                Manufacturing Unit
               </Link>
               <Link
                 to="/contact"
