@@ -105,21 +105,32 @@ const Manufacturing = () => {
           }}
         />
 
+        {/* Dark gradient overlay for text readability */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: `linear-gradient(to right, rgba(15,12,10,0.82) 0%, rgba(15,12,10,0.45) 60%, rgba(15,12,10,0.15) 100%)`,
+          }}
+        />
+
         <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-8 pt-32 pb-20">
           {/* Top Label */}
-          <p className="text-[11px] uppercase tracking-[0.3em] text-[#C9A96E] mb-8">
+          <p className="text-[11px] uppercase tracking-[0.3em] text-[#C9A96E] mb-8 opacity-100">
             Est. 35 Years of Craft
           </p>
 
           {/* Main Headline */}
-          <h1 className="font-heading text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-[0.95] mb-8 max-w-4xl">
+          <h1
+            className="font-heading text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-[0.95] mb-8 max-w-4xl text-white"
+            style={{ textShadow: '0 2px 20px rgba(0,0,0,0.4)' }}
+          >
             The Atelier<br />
             Behind the<br />
             World&apos;s Finest.
           </h1>
 
           {/* Sub-headline */}
-          <p className="font-body text-sm md:text-base font-light text-white/70 max-w-2xl leading-relaxed mb-12">
+          <p className="font-body text-sm md:text-base font-light max-w-2xl leading-relaxed mb-12" style={{ color: '#E8E0D5' }}>
             From a single bespoke suit to a full international collection — every piece leaves Indore handcrafted, export-ready, and impeccable.
           </p>
 
@@ -142,7 +153,7 @@ const Manufacturing = () => {
           </div>
 
           {/* Country Strip */}
-          <div className="flex flex-wrap gap-x-6 gap-y-2 text-xs uppercase tracking-wider text-white/50">
+          <div className="flex flex-wrap gap-x-6 gap-y-2 text-xs uppercase tracking-wider text-white" style={{ opacity: 0.75 }}>
             {countries.map((c, i) => (
               <span key={c} className="flex items-center gap-6">
                 {c}
