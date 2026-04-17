@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const BESPOKE_SECTION_IMAGE = ""; // Replace with your image path
+const BESPOKE_SECTION_IMAGE = "/images/bespoke-service.jpg";
 
 const PrivateTailoringSection = () => {
   return (
