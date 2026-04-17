@@ -97,6 +97,13 @@ const Manufacturing = () => {
 
       {/* SECTION 1: HERO */}
       <section className="relative min-h-screen bg-[#1A1A1A] text-white flex flex-col justify-center overflow-hidden">
+        {/* Background image */}
+        <div
+          className="absolute inset-0 opacity-40 pointer-events-none bg-cover bg-center"
+          style={{ backgroundImage: `url('/images/bespoke-manufacture.jpg')` }}
+        />
+        {/* Dark gradient overlay for text legibility */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#1A1A1A] via-[#1A1A1A]/80 to-[#1A1A1A]/30 pointer-events-none" />
         {/* Grain texture overlay */}
         <div
           className="absolute inset-0 opacity-[0.03] pointer-events-none"
