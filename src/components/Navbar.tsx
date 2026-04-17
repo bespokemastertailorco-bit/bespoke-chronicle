@@ -156,7 +156,7 @@ const Navbar = () => {
               to="/manufacturing"
               className="text-[11px] uppercase tracking-[0.12em] font-medium text-[#1a1a1a] hover:opacity-70 transition-opacity"
             >
-              Manufacturing Unit
+              Bespoke Manufacture
             </Link>
             <Link
               to="/contact"
@@ -278,7 +278,7 @@ const Navbar = () => {
                 className="block py-3 text-sm uppercase tracking-wider font-light text-[#1a1a1a] border-b border-[#e8e8e8]"
                 onClick={() => setMobileOpen(false)}
               >
-                Manufacturing Unit
+                Bespoke Manufacture
               </Link>
               <Link
                 to="/contact"
