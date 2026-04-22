@@ -48,7 +48,7 @@ const OurStory = () => {
           <div className="order-1 md:order-2">
             {/* REPLACE IMAGE: Our Story Section */}
             <img
-              src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=800"
+              src="https://images.pexels.com/photos/3768005/pexels-photo-3768005.jpeg?auto=compress&w=1200"
               alt="Our Story"
               data-photo="replaceable"
               className="w-full aspect-[4/5] object-cover"

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const HERO_IMAGE = "/images/hero-main.png";
+const HERO_IMAGE = "https://images.pexels.com/photos/3760263/pexels-photo-3760263.jpeg?auto=compress&w=1600";
 
 const scrollTo = (id: string) => {
   const el = document.querySelector(id);
@@ -33,7 +33,7 @@ const HeroSection = () => {
           className="font-body text-sm md:text-base font-light mb-12 leading-relaxed max-w-xl text-white/80"
           style={{ letterSpacing: "0.02em" }}
         >
-          For over 35 years, Bespoke Master has crafted garments that define excellence. 
+          For over 27 years, Bespoke Master has crafted garments that define excellence. 
           Experience the luxury of perfectly tailored clothing, made exclusively for you.
         </p>
         <div className="flex flex-col sm:flex-row gap-4">
