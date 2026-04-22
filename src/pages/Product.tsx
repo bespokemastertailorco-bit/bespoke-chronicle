@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { supabase } from "@/lib/supabase";
 import { useCartContext } from "@/context/CartContext";
+import { useCurrency } from "@/context/CurrencyContext";
 import { toast } from "sonner";
+import { Ruler } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -17,15 +19,15 @@ interface Product {
   description: string;
   images: string[];
   sizes: string[];
+  category?: string;
   fabric_care?: string;
   shipping_returns?: string;
 }
 
-const sizes = ["XS", "S", "M", "L", "XL", "XXL", "Custom"];
-
 const Product = () => {
   const { id } = useParams<{ id: string }>();
   const { addItem } = useCartContext();
+  const { formatPrice } = useCurrency();
 
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
@@ -147,7 +149,7 @@ const Product = () => {
           <div>
             <h1 className="font-heading text-2xl md:text-3xl mb-2">{product.name}</h1>
             <p className="font-heading text-xl md:text-2xl text-neutral-600 mb-6">
-              ₹{product.price.toLocaleString()}
+              {formatPrice(product.price)}
             </p>
 
             <p className="font-body text-sm font-light text-neutral-600 mb-6 leading-relaxed">
@@ -156,21 +158,31 @@ const Product = () => {
 
             {/* Size Selector */}
             <div className="mb-6">
-              <label className="block text-xs uppercase tracking-wider font-light mb-3">
-                Size
-              </label>
+              <div className="flex items-center justify-between mb-3">
+                <label className="text-xs uppercase tracking-wider font-light">
+                  Size
+                </label>
+                <Link
+                  to="/size-guide"
+                  className="flex items-center gap-1 text-xs text-neutral-500 hover:text-black transition-colors"
+                >
+                  <Ruler size={12} strokeWidth={1.5} />
+                  Size Guide
+                </Link>
+              </div>
               <div className="flex flex-wrap gap-2">
-                {sizes.map((size) => (
+                {product.sizes.map((size) => (
                   <button
                     key={size}
                     onClick={() => setSelectedSize(size)}
-                    className={`px-4 py-2 text-xs font-light border transition-colors ${
+                    className={`px-3 py-2 text-xs font-light border transition-colors text-left ${
                       selectedSize === size
                         ? "bg-black text-white border-black"
                         : "bg-white text-black border-neutral-300 hover:border-black"
                     }`}
+                    title={size}
                   >
-                    {size}
+                    <span className="block truncate max-w-[200px]">{size}</span>
                   </button>
                 ))}
               </div>
@@ -206,13 +218,29 @@ const Product = () => {
               ADD TO CART
             </button>
 
-            {/* Book Fitting */}
-            <Link
-              to="/book-appointment"
-              className="block text-center text-xs uppercase tracking-wider font-light underline hover:no-underline mb-8"
-            >
-              BOOK A FITTING
-            </Link>
+            {/* Book Fitting / Consultation */}
+            {product.category === "made-to-measure" ? (
+              <Link
+                to="/book-appointment"
+                className="block text-center bg-neutral-100 text-black py-3 text-xs uppercase tracking-[0.15em] font-light hover:bg-neutral-200 transition-colors mb-4"
+              >
+                BOOK A CONSULTATION
+              </Link>
+            ) : (
+              <Link
+                to="/book-appointment"
+                className="block text-center text-xs uppercase tracking-wider font-light underline hover:no-underline mb-4"
+              >
+                BOOK A FITTING
+              </Link>
+            )}
+
+            {/* Delivery Info */}
+            <p className="text-xs text-neutral-500 text-center mb-8">
+              {product.category === "made-to-measure" 
+                ? "Made to Measure: 4–8 weeks delivery. Includes fitting sessions."
+                : "Bespoke items: 4–8 weeks. RTW: 5–7 working days."}
+            </p>
 
             {/* Accordions */}
             <Accordion type="single" collapsible className="border-t border-neutral-200">

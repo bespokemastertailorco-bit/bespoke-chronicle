@@ -2,9 +2,11 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Plus, Minus, X } from "lucide-react";
 import { useCartContext } from "@/context/CartContext";
+import { useCurrency } from "@/context/CurrencyContext";
 
 const Cart = () => {
   const { items, subtotal, removeItem, updateQuantity } = useCartContext();
+  const { formatPrice } = useCurrency();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -60,7 +62,7 @@ const Cart = () => {
                           Size: {item.size}
                         </p>
                         <p className="text-xs text-neutral-500 md:hidden mt-1">
-                          ₹{item.price.toLocaleString()}
+                          {formatPrice(item.price)}
                         </p>
                       </div>
                     </div>
@@ -85,14 +87,14 @@ const Cart = () => {
                     {/* Price */}
                     <div className="md:col-span-2 text-right hidden md:block">
                       <p className="text-sm font-light">
-                        ₹{item.price.toLocaleString()}
+                        {formatPrice(item.price)}
                       </p>
                     </div>
 
                     {/* Subtotal */}
                     <div className="md:col-span-2 flex items-center justify-end gap-4">
                       <p className="text-sm font-light">
-                        ₹{(item.price * item.quantity).toLocaleString()}
+                        {formatPrice(item.price * item.quantity)}
                       </p>
                       <button
                         onClick={() => removeItem(item.id)}
@@ -115,15 +117,15 @@ const Cart = () => {
                 <div className="space-y-3 text-sm font-light mb-6">
                   <div className="flex justify-between">
                     <span className="text-neutral-600">Subtotal</span>
-                    <span>₹{subtotal.toLocaleString()}</span>
+                    <span>{formatPrice(subtotal)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-neutral-600">Shipping</span>
-                    <span>{shipping === 0 ? "Free" : `₹${shipping}`}</span>
+                    <span>{shipping === 0 ? "Free" : formatPrice(shipping)}</span>
                   </div>
                   <div className="border-t border-neutral-200 pt-3 flex justify-between font-medium">
                     <span>Total</span>
-                    <span>₹{total.toLocaleString()}</span>
+                    <span>{formatPrice(total)}</span>
                   </div>
                 </div>
 

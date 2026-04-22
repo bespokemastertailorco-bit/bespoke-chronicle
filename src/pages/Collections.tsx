@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useLocation } from "react-router-dom";
 import { supabase } from "@/lib/supabase";
+import { useCurrency } from "@/context/CurrencyContext";
+import { ALL_PRODUCTS, COLLECTION_NAMES, COLLECTION_SEO } from "@/data/products";
 
 interface Product {
   id: string;
@@ -9,6 +11,7 @@ interface Product {
   image: string;
   image_hover?: string;
   category: string;
+  badge?: string;
 }
 
 const collectionNames: Record<string, string> = {
@@ -36,9 +39,24 @@ const collectionNames: Record<string, string> = {
 
 const Collections = () => {
   const { collectionId } = useParams<{ collectionId: string }>();
+  const location = useLocation();
+  const { formatPrice } = useCurrency();
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [sortBy, setSortBy] = useState("newest");
+
+  // Update document title for SEO
+  useEffect(() => {
+    const seo = collectionId ? COLLECTION_SEO[collectionId] : null;
+    if (seo) {
+      document.title = seo.title;
+      // Update meta description
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) {
+        metaDesc.setAttribute("content", seo.description);
+      }
+    }
+  }, [collectionId]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -57,55 +75,36 @@ const Collections = () => {
       const { data, error } = await query;
 
       if (error) throw error;
-      setProducts(data || []);
+      // Map data to include badge if present in our local data
+      const mappedData = (data || []).map((p: Product) => {
+        const localProduct = ALL_PRODUCTS.find(lp => lp.id === p.id);
+        return {
+          ...p,
+          badge: localProduct?.badge
+        };
+      });
+      setProducts(mappedData);
     } catch (error) {
       console.error("Error fetching products:", error);
-      // Fallback mock data
-      setProducts([
-        {
-          id: "1",
-          name: "Bespoke Navy Suit",
-          price: 85000,
-          image: "https://images.unsplash.com/photo-1594938298603-c8148c4b4de1?w=500",
-          image_hover: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=500",
-          category: collectionId || "suits",
-        },
-        {
-          id: "2",
-          name: "Charcoal Wool Blazer",
-          price: 48000,
-          image: "https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?w=500",
-          category: collectionId || "blazers",
-        },
-        {
-          id: "3",
-          name: "Fine Cotton Dress Shirt",
-          price: 12500,
-          image: "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=500",
-          category: collectionId || "shirts",
-        },
-        {
-          id: "4",
-          name: "Bespoke Formal Trousers",
-          price: 22000,
-          image: "https://images.unsplash.com/photo-1617137968427-85924c800a22?w=500",
-          category: collectionId || "trousers",
-        },
-        {
-          id: "5",
-          name: "Wool Overcoat",
-          price: 65000,
-          image: "https://images.unsplash.com/photo-1583744946564-b52ac1c389c8?w=500",
-          category: collectionId || "coats",
-        },
-        {
-          id: "6",
-          name: "Black Tie Tuxedo",
-          price: 95000,
-          image: "https://images.unsplash.com/photo-1560243563-062bfc001d68?w=500",
-          category: collectionId || "formal-wear",
-        },
-      ]);
+      // Fallback to local products data
+      const localProducts = collectionId 
+        ? ALL_PRODUCTS.filter(p => p.category === collectionId).map(p => ({
+            id: p.id,
+            name: p.name,
+            price: p.price,
+            image: p.images[0],
+            category: p.category,
+            badge: p.badge
+          }))
+        : ALL_PRODUCTS.map(p => ({
+            id: p.id,
+            name: p.name,
+            price: p.price,
+            image: p.images[0],
+            category: p.category,
+            badge: p.badge
+          }));
+      setProducts(localProducts);
     } finally {
       setLoading(false);
     }
@@ -123,16 +122,21 @@ const Collections = () => {
   });
 
   const collectionName = collectionId
-    ? collectionNames[collectionId] || collectionId.replace(/-/g, " ").toUpperCase()
+    ? COLLECTION_NAMES[collectionId] || collectionId.replace(/-/g, " ").toUpperCase()
     : "ALL COLLECTIONS";
 
   return (
     <div className="min-h-screen bg-white pt-[120px]">
       <div className="max-w-7xl mx-auto px-4 md:px-8 py-8 md:py-12">
         {/* Header */}
-        <h1 className="font-heading text-2xl md:text-3xl uppercase tracking-wider text-center mb-8">
+        <h1 className="font-heading text-2xl md:text-3xl uppercase tracking-wider text-center mb-2">
           {collectionName}
         </h1>
+        {collectionId && COLLECTION_SEO[collectionId] && (
+          <p className="text-center text-sm font-light text-neutral-500 mb-8 max-w-2xl mx-auto">
+            {COLLECTION_SEO[collectionId].description}
+          </p>
+        )}
 
         {/* Filter Bar */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8 pb-4 border-b border-neutral-200">
@@ -181,12 +185,17 @@ const Collections = () => {
                       className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                     />
                   )}
+                  {product.badge && (
+                    <span className="absolute top-2 left-2 bg-black text-white text-[10px] uppercase tracking-wider px-2 py-1">
+                      {product.badge}
+                    </span>
+                  )}
                 </div>
                 <h3 className="text-xs font-light text-neutral-800 mb-1">
                   {product.name}
                 </h3>
                 <p className="text-xs font-light text-neutral-500">
-                  ₹{product.price.toLocaleString()}
+                  {formatPrice(product.price)}
                 </p>
               </Link>
             ))}

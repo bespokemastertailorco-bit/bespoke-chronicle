@@ -4,6 +4,7 @@ import { Menu, X, User, Search, ShoppingBag, ChevronDown } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 import { useCartContext } from "@/context/CartContext";
 import AuthModal from "./AuthModal";
+import CurrencySwitcher from "./CurrencySwitcher";
 
 const COLLECTION_DROPDOWN_IMAGE = ""; // Replace with your image path
 
@@ -209,6 +210,9 @@ const Navbar = () => {
             >
               <Search size={18} strokeWidth={1} />
             </button>
+            <div className="hidden sm:block">
+              <CurrencySwitcher />
+            </div>
             <button
               onClick={() => setCartOpen(true)}
               className="p-2 hover:opacity-70 transition-opacity relative"
@@ -242,7 +246,11 @@ const Navbar = () => {
                 <X size={20} strokeWidth={1} />
               </button>
             </div>
-            <nav className="p-4 overflow-y-auto h-[calc(100%-70px)]">
+            <div className="px-4 py-3 border-b border-[#e8e8e8] sm:hidden">
+              <p className="text-[10px] uppercase tracking-wider text-neutral-500 mb-2">Currency</p>
+              <CurrencySwitcher />
+            </div>
+            <nav className="p-4 overflow-y-auto h-[calc(100%-130px)]">
               {/* Collection */}
               <MobileNavSection title="Collection">
                 <div className="space-y-3">

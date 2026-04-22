@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Instagram, MessageCircle } from "lucide-react";
+import { Instagram, MessageCircle, Facebook } from "lucide-react";
 
 const currentYear = new Date().getFullYear();
 
@@ -30,6 +30,15 @@ const Footer = () => {
                 className="text-[#6b6b6b] hover:text-[#1a1a1a] transition-colors"
               >
                 <Instagram size={18} strokeWidth={1} />
+              </a>
+              <a
+                href="https://facebook.com/bespokemaster"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                className="text-[#6b6b6b] hover:text-[#1a1a1a] transition-colors"
+              >
+                <Facebook size={18} strokeWidth={1} />
               </a>
               <a
                 href="https://wa.me/917310000000"
@@ -100,34 +109,26 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Column 3: Bespoke Master */}
+          {/* Column 3: Help */}
           <div>
             <h4 className="text-[11px] uppercase tracking-[0.12em] font-normal mb-6 text-[#1a1a1a]">
-              Bespoke Master
+              Help
             </h4>
             <ul className="space-y-3">
               <li>
                 <Link
-                  to="/book-appointment"
+                  to="/size-guide"
                   className="text-[13px] font-light text-[#6b6b6b] hover:text-[#1a1a1a] hover:underline transition-all duration-300"
                 >
-                  Bespoke Service
+                  Size Guide
                 </Link>
               </li>
               <li>
                 <Link
-                  to="/our-story"
+                  to="/shipping-policy"
                   className="text-[13px] font-light text-[#6b6b6b] hover:text-[#1a1a1a] hover:underline transition-all duration-300"
                 >
-                  Our Craft
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/contact"
-                  className="text-[13px] font-light text-[#6b6b6b] hover:text-[#1a1a1a] hover:underline transition-all duration-300"
-                >
-                  Showroom
+                  Shipping Policy
                 </Link>
               </li>
               <li>
@@ -135,7 +136,23 @@ const Footer = () => {
                   to="/contact"
                   className="text-[13px] font-light text-[#6b6b6b] hover:text-[#1a1a1a] hover:underline transition-all duration-300"
                 >
-                  Contact
+                  Care Instructions
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/contact"
+                  className="text-[13px] font-light text-[#6b6b6b] hover:text-[#1a1a1a] hover:underline transition-all duration-300"
+                >
+                  Returns Policy
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/contact"
+                  className="text-[13px] font-light text-[#6b6b6b] hover:text-[#1a1a1a] hover:underline transition-all duration-300"
+                >
+                  Contact Us
                 </Link>
               </li>
             </ul>
@@ -147,16 +164,26 @@ const Footer = () => {
               Contact
             </h4>
             <address className="not-italic text-[13px] font-light text-[#6b6b6b] leading-[1.8] mb-4">
-              Atelier & Manufacturing Unit<br />
+              Malhar Mega Mall<br />
               Indore, Madhya Pradesh, India<br />
               Available Worldwide
             </address>
-            <p className="text-[13px] font-light">
+            <p className="text-[13px] font-light mb-2">
               <a 
                 href="mailto:bespokemastertailor.co@gmail.com" 
                 className="text-[#6b6b6b] hover:text-[#1a1a1a] hover:underline transition-all duration-300"
               >
                 bespokemastertailor.co@gmail.com
+              </a>
+            </p>
+            <p className="text-[13px] font-light">
+              <a 
+                href="https://wa.me/917310000000" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#6b6b6b] hover:text-[#1a1a1a] hover:underline transition-all duration-300"
+              >
+                WhatsApp: +91 7310000000
               </a>
             </p>
           </div>
@@ -167,7 +194,7 @@ const Footer = () => {
       <div className="border-t border-[#e8e8e8]">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12 py-6">
           <p className="text-[10px] uppercase tracking-[0.1em] font-light text-[#6b6b6b] text-center">
-            © {currentYear} Bespoke Master. All Rights Reserved.
+            © 2025 The Bespoke Master. All rights reserved.
           </p>
         </div>
       </div>
