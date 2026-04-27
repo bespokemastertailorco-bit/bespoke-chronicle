@@ -91,7 +91,7 @@ const Checkout = () => {
 
       const message = `Hello! I would like to place an order:%0A%0A${itemsList}%0A%0ATotal: ${formatPrice(total)}%0APayment Method: ${paymentOptions.find(p => p.id === selectedPayment)?.name}%0A%0AShipping to:%0A${formData.name}%0A${formData.email}%0A${formData.address}%0A${formData.city}, ${formData.pincode}%0A${formData.country}%0APhone: ${formData.phone}`;
 
-      const whatsappUrl = `https://wa.me/917310000000?text=${message}`;
+      const whatsappUrl = `https://wa.me/919993786959?text=${message}`;
       window.open(whatsappUrl, "_blank");
 
       toast.success("Order details sent via WhatsApp!");

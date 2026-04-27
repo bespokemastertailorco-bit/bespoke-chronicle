@@ -1,4 +1,4 @@
-const WA_NUMBER = "917770969267";
+const WA_NUMBER = "919993786959";
 const WA_MESSAGE = encodeURIComponent(
   "Hello, I'm interested in Bespoke Master B2B/wholesale. Please share more details."
 );

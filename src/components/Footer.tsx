@@ -10,7 +10,6 @@ const scrollTo = (href: string) => {
 const navLinks = [
   { label: "Our Craft", href: "#our-craft" },
   { label: "Gallery", href: "#gallery" },
-  { label: "B2B & Wholesale", href: "#b2b" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -49,7 +48,7 @@ const Footer = () => {
           {/* Right: Social Icons */}
           <div className="flex items-center gap-5">
             <a
-              href="https://wa.me/917770969267"
+              href="https://wa.me/919993786959"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="WhatsApp"

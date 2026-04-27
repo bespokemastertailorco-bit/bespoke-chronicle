@@ -165,13 +165,13 @@ const SizeGuide = () => {
                   bespokemastertailor.co@gmail.com
                 </a>
                 <a 
-                  href="https://wa.me/917310000000" 
+                  href="https://wa.me/919993786959" 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 text-sm hover:text-neutral-300 transition-colors"
                 >
                   <Phone size={16} strokeWidth={1.5} />
-                  WhatsApp +91 7310000000
+                  WhatsApp +91 99937 86959
                 </a>
               </div>
             </div>

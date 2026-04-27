@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 
-const WA_NUMBER = "917770969267";
+const WA_NUMBER = "919993786959";
 const WA_MESSAGE = encodeURIComponent(
-  "Hello, I'm interested in Bespoke Master B2B/wholesale. Please share more details."
+  "Hello, I'm interested in Bespoke Master tailoring. Please share more details."
 );
 const CATALOGUE_URL = "/catalogue/bespoke-master-catalogue.pdf";
 
@@ -18,7 +18,6 @@ const handleCatalogue = () => {
 const navLinks = [
   { label: "Our Craft", href: "#our-craft" },
   { label: "Gallery", href: "#gallery" },
-  { label: "B2B & Wholesale", href: "#b2b" },
   { label: "Contact", href: "#contact" },
 ];
 

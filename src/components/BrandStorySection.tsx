@@ -1,7 +1,7 @@
 const trustItems = [
   { icon: "✦", label: "27+ Years Experience" },
   { icon: "✦", label: "10,000+ Garments Crafted" },
-  { icon: "✦", label: "Pan-India & International Supply" },
+  { icon: "✦", label: "Indore-based, Serving Globally" },
 ];
 
 const BrandStorySection = () => {
@@ -15,8 +15,8 @@ const BrandStorySection = () => {
             style={{ aspectRatio: "3/4", maxHeight: "560px" }}
           >
             <img
-              src="/gallery/gallery-01.jpg"
-              alt="Master tailor at work"
+              src="/qayyum.jpg"
+              alt="Master Tailor Qayyum Ansari"
               className="w-full h-full object-cover"
               style={{ borderRadius: "4px" }}
             />
@@ -25,20 +25,36 @@ const BrandStorySection = () => {
           {/* Right: Text */}
           <div className="flex-1">
             <p className="text-[11px] uppercase tracking-[0.18em] text-[#c9a84c] mb-4 font-medium">
-              Our Heritage
+              Our Craft
             </p>
             <h2
               className="font-heading text-3xl md:text-4xl lg:text-5xl text-[#1a1a1a] mb-8 leading-tight"
               style={{ letterSpacing: "0.02em" }}
             >
-              27 Years of Mastercraft
+              The Man Behind the Masterpiece
             </h2>
-            <p className="text-[15px] font-light text-[#4a4a4a] leading-relaxed mb-10 max-w-[520px]">
-              Bespoke Master was founded by master tailor Qayyum Ansari, whose hands have
-              shaped thousands of garments across India and internationally. We specialize in
-              precision bespoke tailoring for suits, sherwanis, formal wear, and custom
-              uniforms — crafted for discerning individuals and wholesale retail partners.
-            </p>
+            <div className="text-[15px] font-light text-[#4a4a4a] leading-relaxed mb-10 max-w-[520px] space-y-4">
+              <p>
+                In the narrow lanes of Indore, where thread meets tradition,
+                Master Tailor Qayyum Ansari has been doing what most cannot —
+                crafting garments that feel like a second skin.
+              </p>
+              <p>
+                With over 27 years of experience behind the needle, Mr. Qayyum
+                has shaped thousands of garments for clients across India and
+                internationally — each piece cut by hand, fitted by instinct,
+                and finished with the patience that only a true craftsman carries.
+              </p>
+              <p>
+                At Bespoke Master, we do not manufacture clothing. We construct
+                experiences. Every suit, sherwani, and formal piece carries
+                the weight of decades of mastery — made exclusively for you,
+                measured to your body, and tailored to your story.
+              </p>
+              <p>
+                This is not fast fashion. This is the art of being exceptional.
+              </p>
+            </div>
 
             {/* Trust Icons */}
             <div className="flex flex-col sm:flex-row gap-8">

@@ -1,16 +1,12 @@
-const HERO_IMAGE = "https://images.pexels.com/photos/3760263/pexels-photo-3760263.jpeg?auto=compress&w=1600";
+const HERO_IMAGE = "/hero-bg.jpg";
 
-const WA_NUMBER = "917770969267";
+const WA_NUMBER = "919993786959";
 const WA_MESSAGE = encodeURIComponent(
-  "Hello, I'm interested in Bespoke Master B2B/wholesale. Please share more details."
+  "Hello, I'm interested in Bespoke Master tailoring. Please share more details."
 );
 const CATALOGUE_URL = "/catalogue/bespoke-master-catalogue.pdf";
 
 const handleWhatsApp = () => {
-  const link = document.createElement("a");
-  link.href = CATALOGUE_URL;
-  link.download = "bespoke-master-catalogue.pdf";
-  link.click();
   window.open(`https://wa.me/${WA_NUMBER}?text=${WA_MESSAGE}`, "_blank");
 };
 
@@ -45,7 +41,7 @@ const HeroSection = () => {
           style={{ letterSpacing: "0.02em" }}
         >
           For over 27 years, Bespoke Master has crafted garments that define excellence.
-          Partner with us for bulk bespoke tailoring, private label, and wholesale supply.
+          Every garment is cut by hand, fitted by instinct, and finished with decades of mastery — made exclusively for you.
         </p>
         <button
           onClick={handleWhatsApp}
