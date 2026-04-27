@@ -378,4 +378,45 @@
   .animate-fade-in-down {
     animation: fadeInDown 0.3s ease forwards;
   }
+
+  /* ── Marquee Gallery ── */
+  @keyframes marqueeLeft {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  @keyframes marqueeRight {
+    0%   { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+  }
+
+  .marquee-left {
+    animation: marqueeLeft 30s linear infinite;
+  }
+
+  .marquee-right {
+    animation: marqueeRight 30s linear infinite;
+  }
+
+  .marquee-left:hover,
+  .marquee-right:hover {
+    animation-play-state: paused;
+  }
+
+  .gallery-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: default;
+  }
+
+  .gallery-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+  }
+
+  @media (max-width: 768px) {
+    .marquee-left,
+    .marquee-right {
+      animation-duration: 20s;
+    }
+  }
 }

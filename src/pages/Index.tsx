@@ -1,15 +1,10 @@
 import { useEffect } from "react";
-import AnnouncementBar from "@/components/AnnouncementBar";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
-import CategoryGrid from "@/components/homepage/CategoryGrid";
-import EditorialSplitSection from "@/components/homepage/EditorialSplitSection";
-import PrivateTailoringSection from "@/components/homepage/PrivateTailoringSection";
-import TailoringProcess from "@/components/homepage/TailoringProcess";
-import WaitingListSection from "@/components/homepage/WaitingListSection";
+import MarqueeGallery from "@/components/MarqueeGallery";
+import BrandStorySection from "@/components/BrandStorySection";
+import B2BSection from "@/components/B2BSection";
 import Footer from "@/components/Footer";
-import CartPanel from "@/components/CartPanel";
-import WaitingListModal from "@/components/WaitingListModal";
 
 const Index = () => {
   useEffect(() => {
@@ -18,20 +13,14 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <AnnouncementBar />
-      <div className="h-10" /> {/* Spacer for announcement bar */}
       <Navbar />
       <main className="pt-16">
         <HeroSection />
-        <CategoryGrid />
-        <EditorialSplitSection />
-        <PrivateTailoringSection />
-        <TailoringProcess />
-        <WaitingListSection />
+        <MarqueeGallery />
+        <BrandStorySection />
+        <B2BSection />
       </main>
       <Footer />
-      <CartPanel />
-      <WaitingListModal />
     </div>
   );
 };
